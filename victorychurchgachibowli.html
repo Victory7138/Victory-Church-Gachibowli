@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Victory Church Gachibowli</title>
+  <style>
+    /* Global Styles */
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
+    body { background-color: #f8f9fa; color: #222; line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
+
+    /* Header Navigation */
+    header { background: #fff; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+    nav { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; }
+    .logo-container { display: flex; align-items: center; gap: 10px; }
+    .logo-text { font-size: 1.3rem; font-weight: 800; color: #1a365d; text-transform: uppercase; letter-spacing: 0.5px; }
+    .logo-sub { font-size: 0.75rem; color: #e53e3e; display: block; font-weight: 600; }
+    .nav-links { list-style: none; display: flex; gap: 25px; align-items: center; }
+    .nav-links a { font-weight: 700; font-size: 0.85rem; color: #4a5568; letter-spacing: 0.5px; transition: color 0.2s; cursor: pointer; }
+    .nav-links a:hover { color: #e53e3e; }
+    .btn-live-badge { background: #cc0000; color: #fff !important; padding: 8px 18px; border-radius: 20px; font-weight: 800; font-size: 0.85rem; display: flex; align-items: center; gap: 6px; box-shadow: 0 2px 6px rgba(204,0,0,0.3); transition: background 0.2s; }
+    .btn-live-badge:hover { background: #a30000; }
+
+    /* Hero Banner */
+    .hero { background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('https://images.unsplash.com/photo-1438232992991-995b7058bbb3?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat; color: #fff; text-align: center; padding: 110px 20px 80px; position: relative; }
+    .hero h1 { font-size: 2.8rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; line-height: 1.2; }
+    .hero p.tagline { max-width: 750px; margin: 15px auto 25px; font-size: 1.05rem; color: #e2e8f0; font-weight: 400; }
+    .hero-btns { display: flex; justify-content: center; gap: 15px; margin-bottom: 30px; }
+    .btn { padding: 12px 28px; border-radius: 4px; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; cursor: pointer; display: inline-block; }
+    .btn-red { background: #e53e3e; color: #fff; }
+    .btn-youtube { background: #cc0000; color: #fff; }
+
+    /* Quick Links Bar */
+    .quick-bar { background: #1a202c; color: #fff; padding: 18px 20px; border-bottom: 3px solid #cc0000; }
+    .quick-bar-container { max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-around; align-items: center; gap: 15px; text-align: center; }
+    .quick-bar a { font-weight: 700; font-size: 0.9rem; color: #edf2f7; background: #2d3748; padding: 8px 18px; border-radius: 4px; transition: background 0.2s; cursor: pointer; }
+    .quick-bar a:hover { background: #cc0000; }
+
+    /* Main Container & Layout */
+    .section-container { max-width: 1100px; margin: 60px auto; padding: 0 20px; }
+    .section-heading { text-align: center; font-size: 2.2rem; font-weight: 900; text-transform: uppercase; color: #1a202c; margin-bottom: 40px; letter-spacing: 1px; }
+
+    /* Live Stream Banner Block */
+    .live-banner { background: #111827; color: #fff; border-radius: 10px; padding: 40px; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.15); border: 2px solid #cc0000; }
+    .live-banner h3 { font-size: 1.8rem; margin-bottom: 10px; color: #fff; }
+    .live-banner p { color: #9ca3af; max-width: 600px; margin: 0 auto 25px; }
+
+    /* Service Times Module */
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+    .service-card { background: #fff; border-top: 4px solid #cc0000; padding: 30px 25px; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+    .service-card h3 { font-size: 1.3rem; margin-bottom: 15px; color: #1a202c; border-bottom: 1px solid #edf2f7; padding-bottom: 10px; }
+    .service-time-item { margin-bottom: 12px; }
+    .service-time-item strong { color: #2b6cb0; display: block; font-size: 0.95rem; }
+    .service-time-item span { color: #4a5568; font-size: 0.9rem; }
+
+    /* Media Grid */
+    .media-categories { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; text-align: center; }
+    .media-box { background: #fff; padding: 25px; border-radius: 8px; font-weight: 800; text-transform: uppercase; color: #2d3748; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border: 1px solid #edf2f7; transition: transform 0.2s; display: block; }
+    .media-box:hover { transform: translateY(-3px); border-color: #cc0000; color: #cc0000; }
+
+    /* Location Map & Footer */
+    .location-section { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+    @media (max-width: 768px) { .location-section { grid-template-columns: 1fr; } }
+    .map-frame { width: 100%; height: 280px; border: 0; border-radius: 6px; }
+
+    footer { background: #0d1117; color: #8b949e; text-align: center; padding: 35px 20px; font-size: 0.85rem; border-top: 1px solid #21262d; }
+    footer p { margin-bottom: 8px; }
+
+    /* Events Modal Overlay */
+    .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); z-index: 2000; justify-content: center; align-items: center; padding: 20px; }
+    .modal-content { background: #fff; width: 100%; max-width: 650px; border-radius: 10px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3); animation: fadeIn 0.3s ease-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    .modal-header { background: #1a365d; color: #fff; padding: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #cc0000; }
+    .modal-header h2 { font-size: 1.5rem; font-weight: 800; text-transform: uppercase; }
+    .close-btn { font-size: 1.8rem; font-weight: bold; color: #fff; cursor: pointer; line-height: 1; }
+    .close-btn:hover { color: #e53e3e; }
+    .modal-body { padding: 25px; max-height: 70vh; overflow-y: auto; }
+    .event-item { display: flex; gap: 20px; padding: 15px 0; border-bottom: 1px solid #edf2f7; align-items: center; }
+    .event-item:last-child { border-bottom: none; }
+    .event-date { background: #cc0000; color: #fff; min-width: 70px; text-align: center; padding: 10px; border-radius: 6px; font-weight: 800; }
+    .event-date .day { font-size: 1.5rem; display: block; line-height: 1; }
+    .event-date .month { font-size: 0.75rem; text-transform: uppercase; }
+    .event-details h4 { font-size: 1.1rem; color: #1a202c; font-weight: 700; margin-bottom: 4px; }
+    .event-details p { font-size: 0.9rem; color: #4a5568; }
+  </style>
+</head>
+<body>
+
+  <!-- Header Navigation -->
+  <header>
+    <nav>
+      <div class="logo-container">
+        <div>
+          <span class="logo-text">Victory Church</span>
+          <span class="logo-sub">Gachibowli, Hyderabad</span>
+        </div>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#home">HOME</a></li>
+        <li><a onclick="openEventsModal()">EVENTS</a></li>
+        <li><a href="#media">MEDIA</a></li>
+        <li><a href="#about">ABOUT</a></li>
+        <li>
+          <a href="https://youtube.com/@victorychurchgachibowli2888?feature=shared" target="_blank" rel="noopener noreferrer" class="btn-live-badge">
+            <span>🔴</span> WATCH LIVE
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <h1>Changing Lives<br>Making Disciples<br>Reaching The World</h1>
+    <p class="tagline">Victory Church Gachibowli passionately follows the word of God to preach the Gospel. Join us in person or watch our live stream on YouTube!</p>
+    <div class="hero-btns">
+      <a href="#about" class="btn btn-red">Learn More</a>
+      <a href="https://youtube.com/@victorychurchgachibowli2888?feature=shared" target="_blank" rel="noopener noreferrer" class="btn btn-youtube">
+        Watch YouTube Live
+      </a>
+    </div>
+  </section>
+
+  <!-- Quick Access Links Bar -->
+  <div class="quick-bar">
+    <div class="quick-bar-container">
+      <a href="https://youtube.com/@victorychurchgachibowli2888?feature=shared" target="_blank" rel="noopener noreferrer">▶ Official YouTube Channel</a>
+      <a onclick="openEventsModal()">July Events Calendar</a>
+      <a href="#media">Sermons & Audio</a>
+      <a href="#about">Location & Directions</a>
+    </div>
+  </div>
+
+  <!-- Dedicated Live Stream Banner -->
+  <section class="section-container" id="live">
+    <div class="live-banner">
+      <h3>Join Our Sunday Services Online</h3>
+      <p>Subscribe to our official YouTube channel to get notified whenever we go live with Telugu & English Sunday Worship Services.</p>
+      <a href="https://youtube.com/@victorychurchgachibowli2888?feature=shared" target="_blank" rel="noopener noreferrer" class="btn btn-youtube">
+        Subscribe & Watch Live
+      </a>
+    </div>
+  </section>
+
+  <!-- Service Times Section -->
+  <section class="section-container" id="events">
+    <h2 class="section-heading">Service Times</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <h3>Sunday Services</h3>
+        <div class="service-time-item">
+          <strong>Telugu & English Service</strong>
+          <span>10:30 AM – 12:30 PM</span>
+        </div>
+        <div class="service-time-item">
+          <strong>Hindi & English Service</strong>
+          <span>6:30 PM – 8:00 PM</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <h3>Mid-Week Service</h3>
+        <div class="service-time-item">
+          <strong>Personal Prayer</strong>
+          <span>6:30 PM</span>
+        </div>
+        <div class="service-time-item">
+          <strong>Wednesday Mid-Week Prayer</strong>
+          <span>7:30 PM</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <h3>Weekday Prayer & School</h3>
+        <div class="service-time-item">
+          <strong>Weekday Prayer Meetings</strong>
+          <span>Monday–Saturday: 8:00 AM – 11:00 AM</span>
+        </div>
+        <div class="service-time-item">
+          <strong>Sunday School</strong>
+          <span>Every Sunday: 11:00 AM (below 15 Yrs)</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Media & Resources Section -->
+  <section class="section-container" id="media">
+    <h2 class="section-heading">Media & Channel Links</h2>
+    <div class="media-categories">
+      <a href="https://youtube.com/@victorychurchgachibowli2888?feature=shared" target="_blank" rel="noopener noreferrer" class="media-box">Latest Live Stream</a>
+      <a href="https://youtube.com/@victorychurchgachibowli2888?feature=shared" target="_blank" rel="noopener noreferrer" class="media-box">Sermon Videos</a>
+      <a href="https://youtube.com/@victorychurchgachibowli2888?feature=shared" target="_blank" rel="noopener noreferrer" class="media-box">Worship & Music</a>
+      <a href="https://youtube.com/@victorychurchgachibowli2888?feature=shared" target="_blank" rel="noopener noreferrer" class="media-box">Subscribe Channel</a>
+    </div>
+  </section>
+
+  <!-- Location & Contact -->
+  <section class="section-container" id="about">
+    <h2 class="section-heading">Our Location</h2>
+    <div class="location-section">
+      <div>
+        <h3 style="font-size: 1.4rem; margin-bottom: 15px; color: #1a202c;">Visit Victory Church</h3>
+        <p style="margin-bottom: 10px;"><strong>Address:</strong><br>Ideal Square Building,<br>3rd Floor Above Westside Shoppingmall, Gachibowli,<br>Hyderabad, Telangana 500032</p>
+        <p style="margin-bottom: 15px;"><strong>Services:</strong> In-person and online streaming on our official YouTube channel.</p>
+      </div>
+      <div>
+        <iframe class="map-frame" src="https://maps.google.com/maps?q=Victory%20Church%20Gachibowli%20Hyderabad&t=&z=15&ie=UTF8&iwloc=&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 Victory Church Gachibowli. All rights reserved.</p>
+    <p>500032 Hyderabad, Telangana, India</p>
+  </footer>
+
+  <!-- Events Modal Popup -->
+  <div id="eventsModal" class="modal-overlay" onclick="closeEventsModal(event)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h2>July 2026 Events</h2>
+        <span class="close-btn" onclick="closeEventsModal(true)">&times;</span>
+      </div>
+      <div class="modal-body">
+        <div class="event-item">
+          <div class="event-date">
+            <span class="day">24</span>
+            <span class="month">JUL</span>
+          </div>
+          <div class="event-details">
+            <h4>Area Wide Home Bible Study</h4>
+            <p><strong>Time:</strong> 8:00 PM</p>
+            <p>Join us for an impactful fellowship and Bible study in designated home locations.</p>
+          </div>
+        </div>
+
+        <div class="event-item">
+          <div class="event-date">
+            <span class="day">25</span>
+            <span class="month">JUL</span>
+          </div>
+          <div class="event-details">
+            <h4>Youth Meeting</h4>
+            <p><strong>Time:</strong> 8:00 AM – 12:00 PM</p>
+            <p>Special morning session for youth involving worship, word, and interactive activities.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript to handle Modal opening/closing -->
+  <script>
+    function openEventsModal() {
+      document.getElementById('eventsModal').style.display = 'flex';
+    }
+
+    function closeEventsModal(force) {
+      if (force === true || event.target.id === 'eventsModal') {
+        document.getElementById('eventsModal').style.display = 'none';
+      }
+    }
+  </script>
+
+</body>
+</html>
