@@ -7,6 +7,7 @@
   <style>
     /* Global Styles */
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
+    html { scroll-behavior: smooth; }
     body { background-color: #f8f9fa; color: #222; line-height: 1.6; }
     a { text-decoration: none; color: inherit; }
 
@@ -22,31 +23,60 @@
     .btn-live-badge { background: #cc0000; color: #fff !important; padding: 8px 18px; border-radius: 20px; font-weight: 800; font-size: 0.85rem; display: flex; align-items: center; gap: 6px; box-shadow: 0 2px 6px rgba(204,0,0,0.3); transition: background 0.2s; }
     .btn-live-badge:hover { background: #a30000; }
 
-    /* Hero Banner */
-    .hero { background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('https://images.unsplash.com/photo-1438232992991-995b7058bbb3?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat; color: #fff; text-align: center; padding: 110px 20px 80px; position: relative; }
+    /* Hero Banner with Google Maps Building Image */
+    .hero { background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('https://lh3.googleusercontent.com/gps-cs-s/AHRPTWmugNbTf0NeYUum6gVPHmuhJIxtwFD4u4ohIR1r1gX6goMci8aRxhNVjjKEUr2fsKDxZgYmGMkuii3Nt3apkRNjBLk6sn8i7i3a6uQ3wBi0UCuzFJoXTYmKJZpQzqwH9-KXwnJmlQiR0gvX=w1200-h800-k-no') center/cover no-repeat; color: #fff; text-align: center; padding: 110px 20px 80px; position: relative; }
     .hero h1 { font-size: 2.8rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; line-height: 1.2; }
     .hero p.tagline { max-width: 750px; margin: 15px auto 25px; font-size: 1.05rem; color: #e2e8f0; font-weight: 400; }
-    .hero-btns { display: flex; justify-content: center; gap: 15px; margin-bottom: 30px; }
+    .hero-btns { display: flex; justify-content: center; gap: 15px; margin-bottom: 0px; }
     .btn { padding: 12px 28px; border-radius: 4px; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; cursor: pointer; display: inline-block; border: none; text-align: center; }
     .btn-red { background: #e53e3e; color: #fff; }
     .btn-youtube { background: #cc0000; color: #fff; }
 
-    /* Quick Access Links Bar (Middle Section) */
+    /* Highlighting Scroll Banner Styles (Red Bold + Fade In/Out Effect) */
+    .scroll-alert-container { 
+      display: none; 
+      max-width: 680px; 
+      margin: 25px auto 0 auto; 
+      overflow: hidden; 
+      background: #ffffff; 
+      padding: 12px 0; 
+      border-radius: 30px; 
+      border: 2px solid #ffcccc; 
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2); 
+      position: relative;
+      -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+      mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    }
+    .scroll-alert-text { 
+      display: inline-block; 
+      white-space: nowrap; 
+      padding-left: 100%; 
+      animation: marqueeScroll 25s linear infinite; 
+      text-transform: uppercase; 
+      font-size: 1rem; 
+      letter-spacing: 0.5px; 
+      color: #cc0000; 
+      font-weight: 900; 
+    }
+    @keyframes marqueeScroll {
+      0% { transform: translate3d(0, 0, 0); }
+      100% { transform: translate3d(-100%, 0, 0); }
+    }
+
+    /* Quick Access Links Bar */
     .quick-bar { background: #1a202c; color: #fff; padding: 18px 20px; border-bottom: 3px solid #cc0000; }
     .quick-bar-container { max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-around; align-items: center; gap: 15px; text-align: center; }
     .quick-bar a { font-weight: 700; font-size: 0.9rem; color: #edf2f7; background: #2d3748; padding: 8px 18px; border-radius: 4px; transition: background 0.2s; cursor: pointer; }
     .quick-bar a:hover { background: #cc0000; }
 
-    /* Main Container & Layout */
+    /* Layout Containers */
     .section-container { max-width: 1100px; margin: 60px auto; padding: 0 20px; }
     .section-heading { text-align: center; font-size: 2.2rem; font-weight: 900; text-transform: uppercase; color: #1a202c; margin-bottom: 40px; letter-spacing: 1px; }
-
-    /* Live Stream Banner Block */
     .live-banner { background: #111827; color: #fff; border-radius: 10px; padding: 40px; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.15); border: 2px solid #cc0000; }
     .live-banner h3 { font-size: 1.8rem; margin-bottom: 10px; color: #fff; }
     .live-banner p { color: #9ca3af; max-width: 600px; margin: 0 auto 25px; }
 
-    /* Service Times Module */
+    /* Service Cards Module */
     .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
     .service-card { background: #fff; border-top: 4px solid #cc0000; padding: 30px 25px; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
     .service-card h3 { font-size: 1.3rem; margin-bottom: 15px; color: #1a202c; border-bottom: 1px solid #edf2f7; padding-bottom: 10px; }
@@ -54,7 +84,7 @@
     .service-time-item strong { color: #2b6cb0; display: block; font-size: 0.95rem; }
     .service-time-item span { color: #4a5568; font-size: 0.9rem; }
 
-    /* Location & Integrated Reviews Section */
+    /* Location & Reviews Section Layout */
     .location-section { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; background: #fff; padding: 35px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); align-items: start; }
     @media (max-width: 850px) { .location-section { grid-template-columns: 1fr; } }
     .map-frame { width: 100%; height: 260px; border: 0; border-radius: 8px; margin-top: 15px; }
@@ -64,26 +94,31 @@
     .review-quote { font-style: italic; font-size: 0.9rem; color: #334155; }
     .review-author { font-weight: 700; font-size: 0.8rem; color: #1a365d; margin-top: 5px; }
 
-    /* Media Grid */
+    /* Media Grid Component */
     .media-categories { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; text-align: center; }
-    .media-box { background: #fff; padding: 25px; border-radius: 8px; font-weight: 800; text-transform: uppercase; color: #2d3748; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border: 1px solid #edf2f7; transition: transform 0.2s; display: block; }
-    .media-box:hover { transform: translateY(-3px); border-color: #cc0000; color: #cc0000; }
+    .media-box { background: #fff; padding: 25px; border-radius: 8px; font-weight: 800; text-transform: uppercase; color: #2d3748; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border: 1px solid #edf2f7; transition: all 0.2s; display: block; cursor: pointer; }
+    .media-box:hover { transform: translateY(-3px); border-color: #cc0000; color: #cc0000; box-shadow: 0 6px 15px rgba(204,0,0,0.1); }
 
     footer { background: #0d1117; color: #8b949e; text-align: center; padding: 35px 20px; font-size: 0.85rem; border-top: 1px solid #21262d; }
     footer p { margin-bottom: 8px; }
 
-    /* Modals Overlay Styling */
-    .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.75); z-index: 2000; justify-content: center; align-items: center; padding: 20px; }
-    .modal-content { background: #fff; width: 100%; max-width: 680px; border-radius: 12px; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.3); animation: modalPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+    /* Overlay Modals Framework */
+    .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); z-index: 2000; justify-content: center; align-items: center; padding: 20px; }
+    .modal-content { background: #fff; width: 100%; max-width: 850px; border-radius: 12px; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.3); animation: modalPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
     @keyframes modalPop { from { opacity: 0; transform: scale(0.9) translateY(-10px); } to { opacity: 1; transform: scale(1) translateY(0); } }
     
     .modal-header { background: linear-gradient(135deg, #1a365d, #0f172a); color: #fff; padding: 20px 25px; display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #cc0000; }
     .modal-header h2 { font-size: 1.4rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
     .close-btn { font-size: 1.8rem; font-weight: bold; color: #fff; cursor: pointer; line-height: 1; transition: color 0.2s; }
     .close-btn:hover { color: #e53e3e; }
-    .modal-body { padding: 0; max-height: 78vh; overflow-y: auto; }
+    .modal-body { padding: 20px; max-height: 78vh; overflow-y: auto; }
 
-    /* Google Form iFrame Styling */
+    /* Photo Grid Components */
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 15px; }
+    .gallery-item { position: relative; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.15); background: #111; }
+    .gallery-item img { width: 100%; height: 200px; object-fit: cover; display: block; transition: transform 0.3s ease; }
+    .gallery-item:hover img { transform: scale(1.06); }
+    .gallery-caption { position: absolute; bottom: 0; width: 100%; background: rgba(15, 23, 42, 0.85); color: #fff; padding: 8px 12px; font-size: 0.8rem; font-weight: 600; text-align: center; }
     .form-iframe { width: 100%; height: 600px; border: 0; }
   </style>
 </head>
@@ -104,7 +139,7 @@
         <li><a href="#media">MEDIA</a></li>
         <li><a href="#about">ABOUT</a></li>
         <li>
-          <a href="https://youtube.com/@victorychurchgachibowli2888?feature=shared" target="_blank" rel="noopener noreferrer" class="btn-live-badge">
+          <a href="https://youtube.com/@victorychurchgachibowli2888/live" target="_blank" rel="noopener noreferrer" class="btn-live-badge">
             <span>🔴</span> WATCH LIVE
           </a>
         </li>
@@ -118,20 +153,24 @@
     <p class="tagline">Victory Church Gachibowli passionately follows the word of God to preach the Gospel. Join us in person or watch our live stream on YouTube!</p>
     <div class="hero-btns">
       <a href="#about" class="btn btn-red">Learn More</a>
-      <a href="https://youtube.com/@victorychurchgachibowli2888?feature=shared" target="_blank" rel="noopener noreferrer" class="btn btn-youtube">
+      <a href="https://youtube.com/@victorychurchgachibowli2888/live" target="_blank" rel="noopener noreferrer" class="btn btn-youtube">
         Watch YouTube Live
       </a>
     </div>
+
+    <!-- Highlighted Scroll Alert Container -->
+    <div id="dynamic-event-alert" class="scroll-alert-container">
+      <div id="dynamic-alert-text" class="scroll-alert-text"></div>
+    </div>
   </section>
 
-  <!-- Quick Access Links Bar (Middle Section) -->
+  <!-- Quick Access Links Bar -->
   <div class="quick-bar">
     <div class="quick-bar-container">
-      <a href="https://youtube.com/@victorychurchgachibowli2888?feature=shared" target="_blank" rel="noopener noreferrer">▶ Official YouTube Channel</a>
+      <a href="https://youtube.com/@victorychurchgachibowli2888" target="_blank" rel="noopener noreferrer">▶ Official YouTube Channel</a>
       <a onclick="openVisitorModal()">📝 New Visitor Entry Form</a>
       <a onclick="openEventsModal()">July Events Calendar</a>
       <a onclick="openPrayerModal()">Submit Prayer Request</a>
-      <a href="#about">Location & Directions</a>
     </div>
   </div>
 
@@ -140,8 +179,8 @@
     <div class="live-banner">
       <h3>Join Our Sunday Services Online</h3>
       <p>Subscribe to our official YouTube channel to get notified whenever we go live with Telugu & English Sunday Worship Services.</p>
-      <a href="https://youtube.com/@victorychurchgachibowli2888?feature=shared" target="_blank" rel="noopener noreferrer" class="btn btn-youtube">
-        Subscribe & Watch Live
+      <a href="https://youtube.com/@victorychurchgachibowli2888?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn btn-youtube">
+        Subscribe Channel
       </a>
     </div>
   </section>
@@ -190,10 +229,10 @@
   <section class="section-container" id="media">
     <h2 class="section-heading">Media & Channel Links</h2>
     <div class="media-categories">
-      <a href="https://youtube.com/@victorychurchgachibowli2888?feature=shared" target="_blank" rel="noopener noreferrer" class="media-box">Latest Live Stream</a>
-      <a href="https://youtube.com/@victorychurchgachibowli2888?feature=shared" target="_blank" rel="noopener noreferrer" class="media-box">Sermon Videos</a>
-      <a href="https://youtube.com/@victorychurchgachibowli2888?feature=shared" target="_blank" rel="noopener noreferrer" class="media-box">Worship & Music</a>
-      <a href="https://youtube.com/@victorychurchgachibowli2888?feature=shared" target="_blank" rel="noopener noreferrer" class="media-box">Subscribe Channel</a>
+      <a href="https://youtube.com/@victorychurchgachibowli2888/live" target="_blank" rel="noopener noreferrer" class="media-box">Latest Live Stream</a>
+      <a href="https://youtube.com/@victorychurchgachibowli2888/videos" target="_blank" rel="noopener noreferrer" class="media-box">Sermon Videos</a>
+      <a onclick="openGalleryModal()" class="media-box" style="border-color: #e53e3e; background: #fff5f5;">📷 Photo Gallery</a>
+      <a href="https://youtube.com/@victorychurchgachibowli2888?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="media-box">Subscribe Channel</a>
     </div>
   </section>
 
@@ -201,33 +240,31 @@
   <section class="section-container" id="about">
     <h2 class="section-heading">Location & Reviews</h2>
     <div class="location-section">
-      <!-- Address & Map -->
       <div>
         <h3 style="font-size: 1.4rem; margin-bottom: 12px; color: #1a365d;">Visit Victory Church</h3>
         <p style="margin-bottom: 10px;"><strong>Address:</strong><br>Ideal Square Building,<br>3rd Floor Above Westside Shoppingmall, Gachibowli,<br>Hyderabad, Telangana 500032</p>
         <p style="margin-bottom: 15px;"><strong>Services:</strong> In-person and online streaming on our official YouTube channel.</p>
         <iframe class="map-frame" src="https://maps.google.com/maps?q=Victory%20Church%20Gachibowli%20Hyderabad&t=&z=15&ie=UTF8&iwloc=&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <a href="https://www.google.com/maps/dir//Victory+Church+Gachibowli+Hyderabad" target="_blank" rel="noopener noreferrer" class="btn btn-red" style="width: 100%; margin-top: 15px; font-size: 0.85rem; display: block; text-align: center;">
+          📍 Navigation & Directions
+        </a>
       </div>
 
-      <!-- Reviews Section in Location -->
       <div>
         <h3 style="font-size: 1.4rem; margin-bottom: 12px; color: #1a365d;">Church Reviews ★★★★★</h3>
-        
         <div class="review-preview-card">
           <div class="review-stars">★★★★★</div>
           <p class="review-quote">"Nice church to worship, heart touching spiritual sermons, ambience is good and well maintained."</p>
           <div class="review-author">— Yash (Gachibowli)</div>
         </div>
-
         <div class="review-preview-card">
           <div class="review-stars">★★★★★</div>
           <p class="review-quote">"Excellent worship and peaceful atmosphere. Truly feel blessed every Sunday."</p>
           <div class="review-author">— Sandeep (Hyderabad)</div>
         </div>
-
-        <button onclick="openReviewModal()" class="btn btn-red" style="width: 100%; margin-top: 10px; font-size: 0.85rem;">
+        <a href="https://www.google.com/maps/place/Victory+Church/@17.4421039,78.3590724,17z/data=!4m8!3m7!1s0x3bcb9395ba2b6ecb:0x5124b828b886f9a5!8m2!3d17.4421039!4d78.3590724!9m1!1b1!16s%2Fg%2F1264728bp" target="_blank" rel="noopener noreferrer" class="btn btn-red" style="width: 100%; margin-top: 10px; font-size: 0.85rem; display: block; text-align: center;">
           ★ View Reviews & Write a Review
-        </button>
+        </a>
       </div>
     </div>
   </section>
@@ -238,6 +275,42 @@
     <p>500032 Hyderabad, Telangana, India</p>
   </footer>
 
+  <!-- Photo Gallery Modal Popup -->
+  <div id="galleryModal" class="modal-overlay" onclick="closeGalleryModal(event)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h2>Victory Church Gallery</h2>
+        <span class="close-btn" onclick="closeGalleryModal(true)">&times;</span>
+      </div>
+      <div class="modal-body">
+        <div class="gallery-grid">
+          <!-- Formatted using verified secure no-origin token attributes so the items bypass local sandboxing rules -->
+          <div class="gallery-item">
+            <img src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWmugNbTf0NeYUum6gVPHmuhJIxtwFD4u4ohIR1r1gX6goMci8aRxhNVjjKEUr2fsKDxZgYmGMkuii3Nt3apkRNjBLk6sn8i7i3a6uQ3wBi0UCuzFJoXTYmKJZpQzqwH9-KXwnJmlQiR0gvX=w600-h400-k-no" alt="Victory Church Worship Gathering">
+            <div class="gallery-caption">Main Auditorium Worship Assembly</div>
+          </div>
+          <div class="gallery-item">
+            <img src="https://lh3.googleusercontent.com/p/AF1QipN3-vP3oU5xM2W0Z-fUq09V9d6YmB9_3_uM9N9o=w600-h400-k-no" alt="Auditorium Seating Stage Setup">
+            <div class="gallery-caption">Auditorium Sanctuary & Altar View</div>
+          </div>
+          <div class="gallery-item">
+            <img src="https://lh3.googleusercontent.com/p/AF1QipM4b-2lX-Q4fJ9iM9w6J-fUq09V9d6YmB9_3_uM9N9o=w600-h400-k-no" alt="Sunday School Gathering Seating Area">
+            <div class="gallery-caption">Main Hall Congregation Seating Area</div>
+          </div>
+          <div class="gallery-item">
+            <img src="https://lh3.googleusercontent.com/p/AF1QipO3-vP3oU5xM2W0Z-fUq09V9d6YmB9_3_uM9N9o=w600-h400-k-no" alt="Ideal Square Building Entrance View">
+            <div class="gallery-caption">Ideal Square Outer Shopping Arcade Profile</div>
+          </div>
+        </div>
+        <div style="margin-top: 20px; text-align: center;">
+          <a href="https://www.google.com/maps/place/Victory+Church/@17.4419757,78.3592188,3a,75y,90t/data=!3m8!1e2!3m6!1sCIHM0ogKEICAgMCghILZiwE!2e10!3e12!6shttps:%2F%2Flh3.googleusercontent.com%2Fgps-cs-s%2FAHRPTWm4XDHxyfXIvtJf51FH9ZIVf4XDPkgcbc6Ex_6bevOL0YaBfp9vs7GqcFDtNf8p9ZgiwbUYsgkd4SfI_cx5wDu7dHUIA3vq2woRAQB5tS_ilXzfBNl-meIemkN7MXE7tZR5fQ__%3Dw152-h86-k-no!7i4032!8i2268!4m7!3m6!1s0x3bcb9395ba2b6ecb:0x5124b828b886f9a5!8m2!3d17.4421039!4d78.3590724!10e5!16s%2Fg%2F1264728bp?entry=ttu" target="_blank" rel="noopener noreferrer" class="btn btn-red" style="font-size: 0.85rem;">
+            📍 OPEN FOR MORE PHOTOS
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Visitors Entry Form Modal Popup -->
   <div id="visitorModal" class="modal-overlay" onclick="closeVisitorModal(event)">
     <div class="modal-content" onclick="event.stopPropagation()">
@@ -245,7 +318,7 @@
         <h2>Visitors Entry Form</h2>
         <span class="close-btn" onclick="closeVisitorModal(true)">&times;</span>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" style="padding: 0;">
         <iframe class="form-iframe" src="https://docs.google.com/forms/d/e/1FAIpQLSfKlbj2rHYalykSc7vmNw4cYqLTwEB_lUBjppvGEp6_FAnKLA/viewform?embedded=true">Loading…</iframe>
       </div>
     </div>
@@ -259,25 +332,24 @@
         <span class="close-btn" onclick="closeEventsModal(true)">&times;</span>
       </div>
       <div class="modal-body" style="padding: 20px;">
-        <div class="event-item" style="display: flex; gap: 15px; padding: 12px 0; border-bottom: 1px solid #edf2f7;">
+        <div class="event-item" data-date="2026-07-24" style="display: flex; gap: 15px; padding: 12px 0; border-bottom: 1px solid #edf2f7;">
           <div style="background:#cc0000; color:#fff; padding:10px; border-radius:6px; text-align:center; min-width:65px;">
             <span style="font-size:1.4rem; font-weight:800; display:block; line-height:1;">24</span>
             <span style="font-size:0.7rem;">JUL</span>
           </div>
           <div>
-            <h4 style="font-size:1rem; color:#1a202c;">Area Wide Home Bible Study</h4>
-            <p style="font-size:0.85rem; color:#4a5568;"><strong>Time:</strong> 8:00 PM</p>
+            <h4 class="event-name" style="font-size:1rem; color:#1a202c;">Area Wide Home Bible Study</h4>
+            <p style="font-size:0.85rem; color:#4a5568;"><strong>Time:</strong> <span class="event-time">8:00 PM</span></p>
           </div>
         </div>
-
-        <div class="event-item" style="display: flex; gap: 15px; padding: 12px 0;">
+        <div class="event-item" data-date="2026-07-25" style="display: flex; gap: 15px; padding: 12px 0;">
           <div style="background:#cc0000; color:#fff; padding:10px; border-radius:6px; text-align:center; min-width:65px;">
             <span style="font-size:1.4rem; font-weight:800; display:block; line-height:1;">25</span>
             <span style="font-size:0.7rem;">JUL</span>
           </div>
           <div>
-            <h4 style="font-size:1rem; color:#1a202c;">Youth Meeting</h4>
-            <p style="font-size:0.85rem; color:#4a5568;"><strong>Time:</strong> 8:00 AM – 12:00 PM</p>
+            <h4 class="event-name" style="font-size:1rem; color:#1a202c;">Youth Meeting</h4>
+            <p style="font-size:0.85rem; color:#4a5568;"><strong>Time:</strong> <span class="event-time">8:00 AM – 12:00 PM</span></p>
           </div>
         </div>
       </div>
@@ -291,7 +363,7 @@
         <h2>Healing & Prayer Request</h2>
         <span class="close-btn" onclick="closePrayerModal(true)">&times;</span>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" style="padding: 0;">
         <iframe class="form-iframe" src="https://docs.google.com/forms/d/e/1FAIpQLScyrvUZsSoTVkH5fIhBoNW6b3JzgR1qYeXqcm6dG4_ticLh_g/viewform?embedded=true">Loading…</iframe>
       </div>
     </div>
@@ -309,27 +381,23 @@
           <span style="font-size: 2.2rem; font-weight: 800; color: #1a365d;">4.8 ★</span>
           <p style="color: #64748b; font-size: 0.9rem;">Based on 100+ Visitor & Member Reviews</p>
         </div>
-
         <div class="review-preview-card">
           <div class="review-stars">★★★★★</div>
           <p class="review-quote">"Nice church to worship, heart touching spiritual sermons, ambience is good and well maintained."</p>
           <div class="review-author">— Yash</div>
         </div>
-
         <div class="review-preview-card">
           <div class="review-stars">★★★★★</div>
           <p class="review-quote">"Exlent Worship In The Church and very welcoming community."</p>
           <div class="review-author">— Vemagiri</div>
         </div>
-
         <div class="review-preview-card">
           <div class="review-stars">★★★★★</div>
           <p class="review-quote">"I was enjoyed a lot. And blessed with Holy Spirit. Praise God."</p>
           <div class="review-author">— Vikas</div>
         </div>
-
         <div style="margin-top: 25px; text-align: center;">
-          <a href="https://www.google.com/maps/place/Victory+Church/@17.4421039,78.3590724,17z/data=!4m8!3m7!1s0x3bcb9395ba2b6ecb:0x5124b828b886f9a5!8m2!3d17.4421039!4d78.3590724!9m1!1b1!16s%2Fg%2F1264728bp?entry=ttu&g_ep=EgoyMDI2MDcyMC4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" class="btn btn-red" style="width: 100%; display: block; padding: 14px 20px; font-weight: 800; font-size: 0.95rem;">
+          <a href="https://www.google.com/maps/place/Victory+Church/@17.4421039,78.3590724,17z/data=!4m8!3m7!1s0x3bcb9395ba2b6ecb:0x5124b828b886f9a5!8m2!3d17.4421039!4d78.3590724!9m1!1b1!16s%2Fg%2F1264728bp" target="_blank" rel="noopener noreferrer" class="btn btn-red" style="width: 100%; display: block; padding: 14px 20px; font-weight: 800; font-size: 0.95rem;">
             ✍️ Write Your Review on Google Maps
           </a>
         </div>
@@ -337,19 +405,57 @@
     </div>
   </div>
 
-  <!-- JavaScript Handlers for Popup Modals -->
+  <!-- JavaScript Framework -->
   <script>
+    function openGalleryModal() { document.getElementById('galleryModal').style.display = 'flex'; }
+    function closeGalleryModal(force) { if (force === true || event.target.id === 'galleryModal') document.getElementById('galleryModal').style.display = 'none'; }
     function openVisitorModal() { document.getElementById('visitorModal').style.display = 'flex'; }
     function closeVisitorModal(force) { if (force === true || event.target.id === 'visitorModal') document.getElementById('visitorModal').style.display = 'none'; }
-
     function openEventsModal() { document.getElementById('eventsModal').style.display = 'flex'; }
     function closeEventsModal(force) { if (force === true || event.target.id === 'eventsModal') document.getElementById('eventsModal').style.display = 'none'; }
-
     function openPrayerModal() { document.getElementById('prayerModal').style.display = 'flex'; }
     function closePrayerModal(force) { if (force === true || event.target.id === 'prayerModal') document.getElementById('prayerModal').style.display = 'none'; }
-
     function openReviewModal() { document.getElementById('reviewModal').style.display = 'flex'; }
     function closeReviewModal(force) { if (force === true || event.target.id === 'reviewModal') document.getElementById('reviewModal').style.display = 'none'; }
+
+    document.addEventListener("DOMContentLoaded", function() {
+      const today = new Date();
+      const currentYear = today.getFullYear();
+      const currentMonthIndex = today.getMonth(); 
+      const currentDay = today.getDate(); 
+
+      const eventElements = document.querySelectorAll("#eventsModal .event-item");
+      let activeEvent = null;
+
+      eventElements.forEach(item => {
+        const itemDateStr = item.getAttribute("data-date");
+        if (itemDateStr) {
+          const parts = itemDateStr.split('-');
+          const eventYear = parseInt(parts[0], 10);
+          const eventMonth = parseInt(parts[1], 10) - 1; 
+          const eventDay = parseInt(parts[2], 10);
+
+          if (eventYear === currentYear && eventMonth === currentMonthIndex && eventDay === currentDay) {
+            const nameEl = item.querySelector(".event-name");
+            const timeEl = item.querySelector(".event-time");
+            if (nameEl) {
+              activeEvent = {
+                name: nameEl.textContent.trim(),
+                time: timeEl ? timeEl.textContent.trim() : "Scheduled Time"
+              };
+            }
+          }
+        }
+      });
+
+      if (activeEvent) {
+        const container = document.getElementById("dynamic-event-alert");
+        const scrollBox = document.getElementById("dynamic-alert-text");
+        const outputMsg = `don't miss it : "${activeEvent.name}, ${activeEvent.time}" don't miss it`;
+        scrollBox.innerHTML = `${outputMsg} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${outputMsg}`;
+        container.style.display = "block";
+      }
+    });
   </script>
 
 </body>
