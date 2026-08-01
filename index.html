@@ -485,49 +485,45 @@
       font-size: 0.84rem;
     }
 
-    .gallery-note {
-      margin-bottom: 0.9rem;
-      color: #2a436b;
-      font-size: 0.92rem;
-      line-height: 1.45;
-    }
-
-    .gallery-top-actions {
-      display: flex;
-      justify-content: flex-start;
-      margin-bottom: 0.95rem;
-    }
-
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 0.95rem;
-      margin-top: 0.4rem;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.1rem;
+      margin-top: 0.65rem;
     }
 
     .gallery-item {
-      background: linear-gradient(180deg, #ffffff, #f4f9ff);
-      border: 1px solid #c6d8f4;
-      border-radius: 16px;
+      background: radial-gradient(circle at 20% 18%, #fefefe 0%, #eef5ff 52%, #e7f1ff 100%);
+      border: 1px solid #bdd2f2;
+      border-radius: 18px;
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      box-shadow: 0 8px 16px rgba(31, 64, 114, 0.08);
+      box-shadow: 0 10px 24px rgba(20, 53, 96, 0.14);
       transition: transform var(--ease), box-shadow var(--ease), border-color var(--ease);
     }
 
     .gallery-item:hover {
-      transform: translateY(-2px);
-      border-color: #95b5e3;
-      box-shadow: 0 14px 24px rgba(31, 64, 114, 0.14);
+      transform: translateY(-4px);
+      border-color: #7fa3d8;
+      box-shadow: 0 18px 34px rgba(20, 53, 96, 0.2);
     }
 
     .gallery-media {
       width: 100%;
       aspect-ratio: 4 / 3;
-      background: #d7e6fb;
+      background: linear-gradient(145deg, #d4e4ff, #b8cff2);
       overflow: hidden;
       position: relative;
+    }
+
+    .gallery-media::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0 0;
+      height: 45%;
+      background: linear-gradient(180deg, rgba(13, 39, 76, 0), rgba(13, 39, 76, 0.34));
+      pointer-events: none;
     }
 
     .gallery-media img,
@@ -545,23 +541,24 @@
     }
 
     .gallery-meta {
-      padding: 0.65rem 0.75rem 0.75rem;
+      padding: 0.75rem 0.85rem 0.85rem;
       display: grid;
       gap: 0.5rem;
     }
 
     .gallery-meta p {
-      font-size: 0.82rem;
-      color: #2c3d34;
+      font-size: 0.84rem;
+      color: #1f3558;
+      font-weight: 600;
       line-height: 1.35;
       margin: 0;
     }
 
     .gallery-open-link {
-      font-size: 0.74rem;
-      color: #1f4f99;
+      font-size: 0.73rem;
+      color: #24589f;
       font-weight: 700;
-      letter-spacing: 0.4px;
+      letter-spacing: 0.55px;
       text-transform: uppercase;
     }
 
@@ -576,27 +573,27 @@
     }
 
     .gallery-admin-dock {
-      margin-top: 1.1rem;
-      border: 1px solid #cfdef3;
-      border-radius: 12px;
-      background: linear-gradient(180deg, #fbfdff, #f3f8ff);
-      padding: 0.8rem;
+      margin-top: 1.25rem;
+      border: 1px solid #b8cff1;
+      border-radius: 16px;
+      background: linear-gradient(160deg, #fafdff, #edf5ff);
+      padding: 0.95rem;
       display: grid;
-      gap: 0.65rem;
+      gap: 0.75rem;
     }
 
     .gallery-admin-head {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 0.7rem;
+      gap: 0.9rem;
       flex-wrap: wrap;
     }
 
     .gallery-admin-head h4 {
-      font-size: 0.88rem;
-      color: #1c3c71;
-      letter-spacing: 0.5px;
+      font-size: 0.92rem;
+      color: #173762;
+      letter-spacing: 0.6px;
       text-transform: uppercase;
     }
 
@@ -604,24 +601,35 @@
       border: 1px solid #7fa2d6;
       background: #fff;
       color: #1f4f99;
-      border-radius: 8px;
+      border-radius: 10px;
       font-size: 0.74rem;
-      padding: 0.42rem 0.65rem;
+      padding: 0.45rem 0.72rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.7px;
       cursor: pointer;
+      transition: transform var(--ease), box-shadow var(--ease), border-color var(--ease);
+    }
+
+    .gallery-admin-toggle:hover {
+      transform: translateY(-1px);
+      border-color: #5e89c8;
+      box-shadow: 0 8px 16px rgba(31, 79, 153, 0.16);
     }
 
     .gallery-manage-row {
       display: flex;
-      justify-content: flex-end;
-      margin-top: 0.2rem;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px dashed #b8cff1;
+      padding-top: 0.6rem;
+      gap: 0.5rem;
+      margin-top: 0.1rem;
     }
 
     .gallery-admin-form {
       display: grid;
-      gap: 0.56rem;
+      gap: 0.62rem;
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
@@ -633,8 +641,8 @@
     .gallery-admin-form select {
       width: 100%;
       border: 1px solid #9ebbe3;
-      border-radius: 8px;
-      padding: 0.5rem 0.6rem;
+      border-radius: 10px;
+      padding: 0.54rem 0.62rem;
       font: inherit;
       font-size: 0.82rem;
       color: #213d66;
@@ -647,11 +655,6 @@
       align-items: center;
       justify-content: flex-start;
       flex-wrap: wrap;
-    }
-
-    .gallery-admin-status {
-      font-size: 0.78rem;
-      color: #31507f;
     }
 
     .gallery-delete {
@@ -983,6 +986,16 @@
       .gallery-grid {
         grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
       }
+
+      .gallery-manage-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .gallery-manage-row .gallery-admin-toggle {
+        width: 100%;
+        text-align: center;
+      }
     }
 
     @media (min-width: 1180px) {
@@ -1240,17 +1253,15 @@
         <button class="close-modal" type="button" aria-label="Close" data-modal-close>&times;</button>
       </div>
       <div class="modal-body">
-        <p class="gallery-note">Photos and videos appear directly here. For Google Drive links, use individual files shared as Anyone with the link.</p>
-        <div class="gallery-top-actions">
-          <a class="btn btn-primary" href="https://photos.app.goo.gl/HQmFE4bmpf1C8esM7" target="_blank" rel="noopener noreferrer">Open Google Photos Album</a>
-        </div>
-
         <div id="galleryGrid" class="gallery-grid"></div>
         <p id="galleryEmpty" class="gallery-empty hidden">No gallery media available yet. Add public Google Drive file links in admin mode.</p>
 
         <div class="gallery-admin-dock">
           <div class="gallery-admin-head">
-            <h4>Gallery Management</h4>
+            <div>
+              <h4>Gallery Management</h4>
+            </div>
+            <button class="btn btn-soft hidden" id="galleryAdminLogout" type="button">Logout</button>
           </div>
 
           <div id="galleryAdminArea" class="hidden">
@@ -1270,15 +1281,12 @@
                 <input class="full" type="text" id="galleryItemCaption" placeholder="Caption (optional)">
                 <button class="btn btn-primary full" type="submit">Add to Gallery</button>
               </form>
-              <div class="gallery-admin-actions">
-                <button class="btn btn-soft" id="galleryAdminLogout" type="button">Logout</button>
-              </div>
             </div>
           </div>
 
-          <p id="galleryAdminStatus" class="gallery-admin-status">Visitors see only photos and videos. Login to manage gallery.</p>
           <div class="gallery-manage-row">
-            <button id="galleryManageButton" class="gallery-admin-toggle" type="button">Manage</button>
+            <button id="galleryManageButton" class="gallery-admin-toggle" type="button">Manage Gallery</button>
+            <button id="galleryLogoutQuick" class="gallery-admin-toggle hidden" type="button">Logout</button>
           </div>
         </div>
       </div>
@@ -1396,9 +1404,9 @@
 
     const galleryGrid = document.getElementById("galleryGrid");
     const galleryEmpty = document.getElementById("galleryEmpty");
-    const galleryAdminStatus = document.getElementById("galleryAdminStatus");
     const galleryAdminArea = document.getElementById("galleryAdminArea");
     const galleryManageButton = document.getElementById("galleryManageButton");
+    const galleryLogoutQuick = document.getElementById("galleryLogoutQuick");
     const galleryAdminLogin = document.getElementById("galleryAdminLogin");
     const galleryAdminControls = document.getElementById("galleryAdminControls");
     const galleryAddForm = document.getElementById("galleryAddForm");
@@ -1444,12 +1452,11 @@
     function syncGalleryAdminUI() {
       galleryAdminControls.classList.toggle("hidden", !isGalleryAdmin);
       galleryAdminLogin.classList.toggle("hidden", isGalleryAdmin);
+      galleryAdminLogout.classList.toggle("hidden", !isGalleryAdmin);
+      galleryLogoutQuick.classList.toggle("hidden", !isGalleryAdmin);
       if (isGalleryAdmin) {
         galleryAdminArea.classList.remove("hidden");
       }
-      galleryAdminStatus.textContent = isGalleryAdmin
-        ? "Admin mode active. You can add or delete gallery media."
-        : "Visitors see only photos and videos. Login to manage gallery.";
     }
 
     function resetGalleryAdminState() {
@@ -1592,13 +1599,16 @@
       }
 
       alert("Invalid admin credentials.");
-      galleryAdminStatus.textContent = "Invalid admin credentials.";
       galleryAdminArea.classList.remove("hidden");
       passwordInput.value = "";
       passwordInput.focus();
     });
 
     galleryAdminLogout.addEventListener("click", () => {
+      resetGalleryAdminState();
+    });
+
+    galleryLogoutQuick.addEventListener("click", () => {
       resetGalleryAdminState();
     });
 
@@ -1647,19 +1657,18 @@
       const validDirect = isLikelyDirectMediaUrl(url);
 
       if (driveFolder) {
-        galleryAdminStatus.textContent = "Please use Google Drive file links, not folder links.";
+        alert("Please use Google Drive file links, not folder links.");
         return;
       }
 
       if (!driveId && !validDirect) {
-        galleryAdminStatus.textContent = "Use a Google Drive file link or a direct media URL ending with image/video extension.";
+        alert("Use a Google Drive file link or a direct media URL ending with image/video extension.");
         return;
       }
 
       galleryItems.unshift({ type, url, caption });
       saveGalleryItems();
       galleryAddForm.reset();
-      galleryAdminStatus.textContent = "Media added successfully.";
       renderGallery();
     });
 
@@ -1673,7 +1682,6 @@
 
       galleryItems.splice(index, 1);
       saveGalleryItems();
-      galleryAdminStatus.textContent = "Media deleted.";
       renderGallery();
     });
 
