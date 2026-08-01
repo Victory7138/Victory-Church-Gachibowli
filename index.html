@@ -24,7 +24,7 @@
       --hero-shadow: rgba(5, 16, 38, 0.48);
       --radius: 14px;
       --radius-sm: 10px;
-      --max: 1140px;
+      --max: 1260px;
       --lift: 0 14px 30px rgba(24, 52, 97, 0.12);
       --ease: 260ms cubic-bezier(.22, .61, .36, 1);
     }
@@ -55,7 +55,7 @@
     }
 
     .container {
-      width: min(100% - 2.2rem, var(--max));
+      width: min(100% - 3rem, var(--max));
       margin: 0 auto;
     }
 
@@ -779,6 +779,52 @@
         padding: 3.2rem 0;
       }
     }
+
+    @media (min-width: 1180px) {
+      .hero {
+        min-height: 88vh;
+      }
+
+      .hero-content {
+        max-width: 900px;
+        padding: 8rem 0 5.4rem;
+      }
+
+      .hero p {
+        font-size: 1.08rem;
+      }
+
+      .stats-grid {
+        gap: 1.2rem;
+        padding: 1.25rem 0;
+      }
+
+      .ribbon-links {
+        gap: 0.9rem;
+      }
+
+      .cards-3 {
+        gap: 1.25rem;
+      }
+
+      .card {
+        padding: 1.35rem;
+      }
+
+      .media-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.1rem;
+      }
+
+      .media-link {
+        min-height: 156px;
+      }
+
+      .two-col {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.3rem;
+      }
+    }
   </style>
 </head>
 
@@ -1032,10 +1078,10 @@
           </article>
 
           <article class="event-item">
-            <div class="event-date"><strong>10-11</strong><span>AUG</span></div>
+            <div class="event-date"><strong>9-12</strong><span>AUG</span></div>
             <div>
-              <h4>Revivals in Chandanagar</h4>
-              <p>Special revival meetings in Chandanagar.</p>
+              <h4>Revivals in Gachibowli with Ps John</h4>
+              <p>Special revival meetings in Gachibowli with Pastor John.</p>
             </div>
           </article>
 
@@ -1066,8 +1112,8 @@
           <article class="event-item">
             <div class="event-date"><strong>23-26</strong><span>AUG</span></div>
             <div>
-              <h4>Revivals with Pastor Nehemiah</h4>
-              <p>Location: Gachibowli.</p>
+              <h4>Revivals in Chandanagar with Ps Nehemaiah</h4>
+              <p>Special revival meetings in Chandanagar with Pastor Nehemaiah.</p>
             </div>
           </article>
 
