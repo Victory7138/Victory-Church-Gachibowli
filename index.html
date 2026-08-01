@@ -12,7 +12,7 @@
 
   <style>
     :root {
-      --bg: #edf3fe;
+      --bg: #f2f6ff;
       --ink: #10294f;
       --ink-soft: #2f4972;
       --surface: #ffffff;
@@ -20,12 +20,12 @@
       --accent: #b03235;
       --accent-dark: #871f24;
       --gold: #2b5eaf;
-      --line: #c9d9f2;
+      --line: #d3dff3;
       --hero-shadow: rgba(5, 16, 38, 0.48);
       --radius: 14px;
       --radius-sm: 10px;
       --max: 1260px;
-      --lift: 0 14px 30px rgba(24, 52, 97, 0.12);
+      --lift: 0 10px 22px rgba(24, 52, 97, 0.1);
       --ease: 260ms cubic-bezier(.22, .61, .36, 1);
     }
 
@@ -46,7 +46,7 @@
         radial-gradient(circle at 90% -10%, #d9e7fb 0%, rgba(217, 231, 251, 0) 38%),
         radial-gradient(circle at -5% 45%, #eaf2ff 0%, rgba(234, 242, 255, 0) 30%),
         var(--bg);
-      line-height: 1.65;
+      line-height: 1.7;
     }
 
     a {
@@ -55,7 +55,7 @@
     }
 
     .container {
-      width: min(100% - 3rem, var(--max));
+      width: min(100% - 2.4rem, var(--max));
       margin: 0 auto;
     }
 
@@ -220,8 +220,8 @@
     .hero h1 {
       font-family: "Fraunces", serif;
       font-size: clamp(1.85rem, 5.2vw, 3.8rem);
-      line-height: 1.05;
-      max-width: 12ch;
+      line-height: 1.08;
+      max-width: 13ch;
       text-shadow: 0 4px 18px var(--hero-shadow);
       margin-bottom: 1rem;
     }
@@ -358,11 +358,11 @@
       font-size: clamp(1.7rem, 4vw, 2.8rem);
       line-height: 1.05;
       margin-bottom: 0.55rem;
-      color: #17251d;
+      color: #16396a;
     }
 
     .section-copy {
-      color: var(--ink-soft);
+      color: #3b5682;
       max-width: 66ch;
       margin-bottom: 1.7rem;
     }
@@ -390,7 +390,7 @@
 
     .agenda-item {
       padding: 0.65rem 0;
-      border-bottom: 1px dashed #d6cab4;
+      border-bottom: 1px dashed #d0def2;
     }
 
     .agenda-item:last-child {
@@ -400,12 +400,12 @@
 
     .agenda-item strong {
       display: block;
-      color: #20352a;
+      color: #203d67;
       font-size: 0.9rem;
     }
 
     .agenda-item span {
-      color: #4b5f53;
+      color: #4d6489;
       font-size: 0.85rem;
     }
 
@@ -419,7 +419,7 @@
     .map-frame {
       width: 100%;
       height: clamp(240px, 38vw, 320px);
-      border: 1px solid #cebfa4;
+      border: 1px solid #c9d9f2;
       border-radius: 12px;
       margin: 0.9rem 0;
     }
@@ -438,7 +438,7 @@
     }
 
     .review p {
-      color: #314138;
+      color: #314f79;
       font-size: 0.89rem;
       font-style: italic;
       margin-bottom: 0.4rem;
@@ -446,7 +446,7 @@
 
     .review span {
       font-size: 0.8rem;
-      color: #1d2c24;
+      color: #1e3f6f;
       font-weight: 700;
     }
 
@@ -486,25 +486,40 @@
     }
 
     .gallery-note {
-      margin-bottom: 0.7rem;
-      color: #314239;
-      font-size: 0.88rem;
+      margin-bottom: 0.9rem;
+      color: #2a436b;
+      font-size: 0.92rem;
+      line-height: 1.45;
+    }
+
+    .gallery-top-actions {
+      display: flex;
+      justify-content: flex-start;
+      margin-bottom: 0.95rem;
     }
 
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: 0.7rem;
-      margin-top: 0.9rem;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 0.95rem;
+      margin-top: 0.4rem;
     }
 
     .gallery-item {
-      background: #f8fbff;
-      border: 1px solid #cbdbf3;
-      border-radius: 10px;
+      background: linear-gradient(180deg, #ffffff, #f4f9ff);
+      border: 1px solid #c6d8f4;
+      border-radius: 16px;
       overflow: hidden;
       display: flex;
       flex-direction: column;
+      box-shadow: 0 8px 16px rgba(31, 64, 114, 0.08);
+      transition: transform var(--ease), box-shadow var(--ease), border-color var(--ease);
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-2px);
+      border-color: #95b5e3;
+      box-shadow: 0 14px 24px rgba(31, 64, 114, 0.14);
     }
 
     .gallery-media {
@@ -512,6 +527,7 @@
       aspect-ratio: 4 / 3;
       background: #d7e6fb;
       overflow: hidden;
+      position: relative;
     }
 
     .gallery-media img,
@@ -519,59 +535,93 @@
     .gallery-media iframe {
       width: 100%;
       height: 100%;
-      object-fit: cover;
       display: block;
       border: 0;
     }
 
+    .gallery-media img,
+    .gallery-media video {
+      object-fit: cover;
+    }
+
     .gallery-meta {
-      padding: 0.55rem 0.6rem 0.65rem;
+      padding: 0.65rem 0.75rem 0.75rem;
       display: grid;
-      gap: 0.45rem;
+      gap: 0.5rem;
     }
 
     .gallery-meta p {
-      font-size: 0.79rem;
+      font-size: 0.82rem;
       color: #2c3d34;
       line-height: 1.35;
       margin: 0;
     }
 
-    .gallery-actions {
-      display: flex;
-      gap: 0.55rem;
-      flex-wrap: wrap;
-      margin: 0.35rem 0 0.2rem;
+    .gallery-open-link {
+      font-size: 0.74rem;
+      color: #1f4f99;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
     }
 
     .gallery-empty {
       margin-top: 0.9rem;
       border: 1px dashed #b7c9e5;
-      border-radius: 10px;
+      border-radius: 12px;
       background: #f8fbff;
       color: #3d516c;
-      padding: 0.85rem;
-      font-size: 0.86rem;
+      padding: 0.95rem;
+      font-size: 0.88rem;
     }
 
-    .gallery-admin {
-      margin-top: 0.85rem;
-      border: 1px solid #c5d8f3;
-      border-radius: 10px;
-      background: #f8fbff;
-      padding: 0.75rem;
+    .gallery-admin-dock {
+      margin-top: 1.1rem;
+      border: 1px solid #cfdef3;
+      border-radius: 12px;
+      background: linear-gradient(180deg, #fbfdff, #f3f8ff);
+      padding: 0.8rem;
       display: grid;
       gap: 0.65rem;
     }
 
-    .gallery-admin h4 {
-      font-size: 0.9rem;
-      color: #1b345f;
+    .gallery-admin-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.7rem;
+      flex-wrap: wrap;
+    }
+
+    .gallery-admin-head h4 {
+      font-size: 0.88rem;
+      color: #1c3c71;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .gallery-admin-toggle {
+      border: 1px solid #7fa2d6;
+      background: #fff;
+      color: #1f4f99;
+      border-radius: 8px;
+      font-size: 0.74rem;
+      padding: 0.42rem 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      cursor: pointer;
+    }
+
+    .gallery-manage-row {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 0.2rem;
     }
 
     .gallery-admin-form {
       display: grid;
-      gap: 0.5rem;
+      gap: 0.56rem;
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
@@ -579,16 +629,24 @@
       grid-column: 1 / -1;
     }
 
-    .gallery-admin input,
-    .gallery-admin select {
+    .gallery-admin-form input,
+    .gallery-admin-form select {
       width: 100%;
-      border: 1px solid #a7c0e3;
+      border: 1px solid #9ebbe3;
       border-radius: 8px;
-      padding: 0.48rem 0.55rem;
+      padding: 0.5rem 0.6rem;
       font: inherit;
       font-size: 0.82rem;
       color: #213d66;
       background: #fff;
+    }
+
+    .gallery-admin-actions {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      justify-content: flex-start;
+      flex-wrap: wrap;
     }
 
     .gallery-admin-status {
@@ -601,12 +659,23 @@
       background: #fff;
       color: #9e2f35;
       border-radius: 8px;
-      font-size: 0.74rem;
-      padding: 0.35rem 0.45rem;
+      font-size: 0.72rem;
+      padding: 0.34rem 0.46rem;
       font-weight: 700;
       cursor: pointer;
       text-transform: uppercase;
-      letter-spacing: 0.8px;
+      letter-spacing: 0.7px;
+      width: fit-content;
+    }
+
+    .gallery-item-error {
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 0.7rem;
+      color: #5a6f90;
+      font-size: 0.78rem;
+      line-height: 1.35;
     }
 
     .hidden {
@@ -730,8 +799,8 @@
       max-height: 88vh;
       overflow: hidden;
       border-radius: 14px;
-      border: 1px solid #cab99b;
-      background: #fffdf8;
+      border: 1px solid #c9d9f2;
+      background: #ffffff;
       box-shadow: 0 22px 40px rgba(12, 18, 13, 0.32);
       transform: translateY(8px);
       animation: modalLift 220ms ease forwards;
@@ -910,6 +979,10 @@
       .gallery-admin-form {
         grid-template-columns: 1fr;
       }
+
+      .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+      }
     }
 
     @media (min-width: 1180px) {
@@ -990,7 +1063,7 @@
     <div class="container hero-content reveal">
       <span class="eyebrow">Worship with us this Sunday</span>
       <h1>Changing lives. Making disciples. Reaching the world.</h1>
-      <p>Victory Church Gachibowli passionately follows the Word of God to preach the Gospel. Join us in person for worship, teaching, and fellowship.</p>
+      <p>We gather to worship Jesus, grow in the Word, and build a loving church family in Hyderabad.</p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="#visit">Plan Your Visit</a>
         <a class="btn btn-soft" href="#services">Service Timings</a>
@@ -1031,7 +1104,7 @@
   <section class="section" id="services">
     <div class="container">
       <h2 class="section-title reveal">Service Times</h2>
-      <p class="section-copy reveal">Gather with us through worship, teaching, prayer, and fellowship across the week.</p>
+      <p class="section-copy reveal">Join us throughout the week for worship, prayer, Bible teaching, and meaningful fellowship.</p>
 
       <div class="cards-3">
         <article class="card reveal">
@@ -1076,12 +1149,12 @@
   <section class="section" id="media" style="padding-top: 0;">
     <div class="container">
       <h2 class="section-title reveal">Media and Resources</h2>
-      <p class="section-copy reveal">Catch up on sermons, browse community moments, and stay informed about church life.</p>
+      <p class="section-copy reveal">Watch recent messages, view church moments, and stay connected with community life.</p>
 
       <div class="media-grid">
         <button class="media-link reveal" type="button" data-modal-open="galleryModal" style="text-align:left;">
           <h4>Photo Gallery</h4>
-          <p>Open church photo highlights and community moments.</p>
+          <p>View photos and videos from worship services and special gatherings.</p>
         </button>
         <button class="media-link reveal" type="button" data-modal-open="eventsModal" style="text-align:left;">
           <h4>Upcoming Events</h4>
@@ -1103,7 +1176,7 @@
     <div class="container">
       <div class="online-card reveal">
         <h3>Watch Online</h3>
-        <p>If you are unable to attend in person, you can join worship online from one place.</p>
+        <p>If you cannot attend in person, join worship online and stay connected from anywhere.</p>
         <div class="online-actions">
           <a class="btn btn-primary" href="https://youtube.com/@victorychurchgachibowli2888/live" target="_blank" rel="noopener noreferrer">Join Live Service</a>
           <a class="btn btn-soft" href="https://youtube.com/@victorychurchgachibowli2888?sub_confirmation=1" target="_blank" rel="noopener noreferrer">Subscribe for Updates</a>
@@ -1116,7 +1189,7 @@
     <div class="container two-col">
       <article class="card reveal">
         <h2 class="section-title" style="font-size:2rem;">Plan Your Visit</h2>
-        <p class="section-copy" style="margin-bottom:0.9rem;">Victory Church Gachibowli welcomes families, students, and professionals from all around Hyderabad.</p>
+        <p class="section-copy" style="margin-bottom:0.9rem;">Victory Church Gachibowli welcomes families, students, and professionals from across Hyderabad.</p>
         <p><strong>Address</strong><br>Ideal Square Building,<br>3rd Floor Above Westside Shoppingmall, Gachibowli,<br>Hyderabad, Telangana 500032</p>
         <iframe class="map-frame" src="https://maps.google.com/maps?q=Victory%20Church%20Gachibowli%20Hyderabad&t=&z=15&ie=UTF8&iwloc=&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         <a class="btn btn-primary" href="https://www.google.com/maps/dir//Victory+Church+Gachibowli+Hyderabad" target="_blank" rel="noopener noreferrer" style="width:100%;">Open Directions</a>
@@ -1147,7 +1220,7 @@
     <div class="container footer-grid">
       <div>
         <h3>Victory Church Gachibowli</h3>
-        <p>Worship in-person and online. We are committed to Gospel-centered preaching, discipleship, and prayer.</p>
+        <p>Worship with us in person or online as we pursue Gospel-centered preaching, discipleship, and prayer.</p>
         <div class="socials">
           <a href="https://wa.me/918688607138" target="_blank" rel="noopener noreferrer">WhatsApp</a>
           <a href="https://www.instagram.com/victorychurch.gachibowli" target="_blank" rel="noopener noreferrer">Instagram</a>
@@ -1167,37 +1240,47 @@
         <button class="close-modal" type="button" aria-label="Close" data-modal-close>&times;</button>
       </div>
       <div class="modal-body">
-        <p class="gallery-note">See church photos and videos loaded from public Google Drive links. Use admin mode to add or remove items.</p>
-        <div class="gallery-actions">
+        <p class="gallery-note">Photos and videos appear directly here. For Google Drive links, use individual files shared as Anyone with the link.</p>
+        <div class="gallery-top-actions">
           <a class="btn btn-primary" href="https://photos.app.goo.gl/HQmFE4bmpf1C8esM7" target="_blank" rel="noopener noreferrer">Open Google Photos Album</a>
         </div>
 
-        <div class="gallery-admin">
-          <h4>Admin Controls</h4>
-          <form id="galleryAdminLogin" class="gallery-admin-form" autocomplete="off">
-            <input type="text" id="adminUsername" placeholder="Admin username" required>
-            <input type="password" id="adminPassword" placeholder="Admin password" required>
-            <button class="btn btn-primary full" type="submit">Login to Manage Gallery</button>
-          </form>
+        <div id="galleryGrid" class="gallery-grid"></div>
+        <p id="galleryEmpty" class="gallery-empty hidden">No gallery media available yet. Add public Google Drive file links in admin mode.</p>
 
-          <div id="galleryAdminControls" class="hidden">
-            <form id="galleryAddForm" class="gallery-admin-form" autocomplete="off">
-              <select id="galleryItemType" required>
-                <option value="photo">Photo</option>
-                <option value="video">Video</option>
-              </select>
-              <input type="url" id="galleryItemUrl" placeholder="Google Drive file link" required>
-              <input class="full" type="text" id="galleryItemCaption" placeholder="Caption (optional)">
-              <button class="btn btn-primary full" type="submit">Add to Gallery</button>
-            </form>
-            <button class="btn btn-soft" id="galleryAdminLogout" type="button">Logout</button>
+        <div class="gallery-admin-dock">
+          <div class="gallery-admin-head">
+            <h4>Gallery Management</h4>
           </div>
 
-          <p id="galleryAdminStatus" class="gallery-admin-status">Admin login required to add or delete items.</p>
-        </div>
+          <div id="galleryAdminArea" class="hidden">
+            <form id="galleryAdminLogin" class="gallery-admin-form" autocomplete="off">
+              <input type="text" id="adminUsername" placeholder="Admin username" required>
+              <input type="password" id="adminPassword" placeholder="Admin password" required>
+              <button class="btn btn-primary full" type="submit">Verify Credentials</button>
+            </form>
 
-        <div id="galleryGrid" class="gallery-grid"></div>
-        <p id="galleryEmpty" class="gallery-empty hidden">No gallery media yet. Add Google Drive photo/video links in admin mode.</p>
+            <div id="galleryAdminControls" class="hidden">
+              <form id="galleryAddForm" class="gallery-admin-form" autocomplete="off">
+                <select id="galleryItemType" required>
+                  <option value="photo">Photo</option>
+                  <option value="video">Video</option>
+                </select>
+                <input type="url" id="galleryItemUrl" placeholder="Google Drive file link or direct media URL" required>
+                <input class="full" type="text" id="galleryItemCaption" placeholder="Caption (optional)">
+                <button class="btn btn-primary full" type="submit">Add to Gallery</button>
+              </form>
+              <div class="gallery-admin-actions">
+                <button class="btn btn-soft" id="galleryAdminLogout" type="button">Logout</button>
+              </div>
+            </div>
+          </div>
+
+          <p id="galleryAdminStatus" class="gallery-admin-status">Visitors see only photos and videos. Login to manage gallery.</p>
+          <div class="gallery-manage-row">
+            <button id="galleryManageButton" class="gallery-admin-toggle" type="button">Manage</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1308,20 +1391,21 @@
     const navLinks = mainNav.querySelectorAll("a, button");
 
     const galleryStorageKey = "vch_gallery_items_v1";
-    const galleryAdminSessionKey = "vch_gallery_admin_session_v1";
-    const adminUserHash = "d1b1dce7e11b1ebd9ae4be8a8c6f82b9af23420a9564326e0f21d71e49b06dc6";
+    const adminUserHash = "2b109149a48d9363919c13f3df24333fe879870b0f9404cf3a6fbe585aa185e4";
     const adminPasswordHash = "d52bdba3a935bf7fc0e508159506d6c9813569b938c6c4dc62db1994ad87b9cf";
 
     const galleryGrid = document.getElementById("galleryGrid");
     const galleryEmpty = document.getElementById("galleryEmpty");
     const galleryAdminStatus = document.getElementById("galleryAdminStatus");
+    const galleryAdminArea = document.getElementById("galleryAdminArea");
+    const galleryManageButton = document.getElementById("galleryManageButton");
     const galleryAdminLogin = document.getElementById("galleryAdminLogin");
     const galleryAdminControls = document.getElementById("galleryAdminControls");
     const galleryAddForm = document.getElementById("galleryAddForm");
     const galleryAdminLogout = document.getElementById("galleryAdminLogout");
 
     let galleryItems = loadGalleryItems();
-    let isGalleryAdmin = sessionStorage.getItem(galleryAdminSessionKey) === "1";
+    let isGalleryAdmin = false;
 
     function loadGalleryItems() {
       try {
@@ -1360,9 +1444,28 @@
     function syncGalleryAdminUI() {
       galleryAdminControls.classList.toggle("hidden", !isGalleryAdmin);
       galleryAdminLogin.classList.toggle("hidden", isGalleryAdmin);
+      if (isGalleryAdmin) {
+        galleryAdminArea.classList.remove("hidden");
+      }
       galleryAdminStatus.textContent = isGalleryAdmin
         ? "Admin mode active. You can add or delete gallery media."
-        : "Admin login required to add or delete items.";
+        : "Visitors see only photos and videos. Login to manage gallery.";
+    }
+
+    function resetGalleryAdminState() {
+      isGalleryAdmin = false;
+      galleryAdminLogin.reset();
+      galleryAdminArea.classList.add("hidden");
+      syncGalleryAdminUI();
+      renderGallery();
+    }
+
+    function isDriveFolderUrl(inputUrl) {
+      return /drive\.google\.com\/(drive\/folders|folders)\//.test(inputUrl);
+    }
+
+    function isLikelyDirectMediaUrl(inputUrl) {
+      return /\.(jpg|jpeg|png|webp|gif|mp4|webm|ogg)(\?|$)/i.test(inputUrl);
     }
 
     function renderGallery() {
@@ -1382,7 +1485,14 @@
 
         const sourceUrl = item.url.trim();
         const driveId = getDriveFileId(sourceUrl);
-        if (item.type === "video") {
+        const driveFolder = isDriveFolderUrl(sourceUrl);
+
+        if (driveFolder) {
+          const fallback = document.createElement("div");
+          fallback.className = "gallery-item-error";
+          fallback.textContent = "Google Drive folder links cannot preview here. Use individual file links.";
+          mediaWrap.appendChild(fallback);
+        } else if (item.type === "video") {
           if (driveId) {
             const iframe = document.createElement("iframe");
             iframe.src = toDriveVideoPreviewUrl(driveId);
@@ -1400,6 +1510,13 @@
           image.src = driveId ? toDrivePhotoUrl(driveId) : sourceUrl;
           image.alt = item.caption || "Church gallery image";
           image.loading = "lazy";
+          image.addEventListener("error", () => {
+            mediaWrap.innerHTML = "";
+            const fallback = document.createElement("div");
+            fallback.className = "gallery-item-error";
+            fallback.textContent = "Preview not available for this link. Open original to view.";
+            mediaWrap.appendChild(fallback);
+          });
           mediaWrap.appendChild(image);
         }
 
@@ -1415,8 +1532,7 @@
         openLink.target = "_blank";
         openLink.rel = "noopener noreferrer";
         openLink.textContent = "Open original";
-        openLink.style.fontSize = "0.74rem";
-        openLink.style.color = "#1f4f99";
+        openLink.className = "gallery-open-link";
         meta.appendChild(openLink);
 
         if (isGalleryAdmin) {
@@ -1457,29 +1573,63 @@
 
     galleryAdminLogin.addEventListener("submit", async (event) => {
       event.preventDefault();
-      const username = document.getElementById("adminUsername").value.trim();
-      const password = document.getElementById("adminPassword").value;
+      const usernameInput = document.getElementById("adminUsername");
+      const passwordInput = document.getElementById("adminPassword");
+      const username = usernameInput.value.trim();
+      const password = passwordInput.value;
 
       const userHash = await sha256Hex(username);
       const passHash = await sha256Hex(password);
 
       if (userHash === adminUserHash && passHash === adminPasswordHash) {
         isGalleryAdmin = true;
-        sessionStorage.setItem(galleryAdminSessionKey, "1");
+        galleryAdminArea.classList.remove("hidden");
         galleryAdminLogin.reset();
+        alert("Admin login successful.");
         syncGalleryAdminUI();
         renderGallery();
         return;
       }
 
+      alert("Invalid admin credentials.");
       galleryAdminStatus.textContent = "Invalid admin credentials.";
+      galleryAdminArea.classList.remove("hidden");
+      passwordInput.value = "";
+      passwordInput.focus();
     });
 
     galleryAdminLogout.addEventListener("click", () => {
-      isGalleryAdmin = false;
-      sessionStorage.removeItem(galleryAdminSessionKey);
-      syncGalleryAdminUI();
-      renderGallery();
+      resetGalleryAdminState();
+    });
+
+    galleryManageButton.addEventListener("click", () => {
+      if (isGalleryAdmin) {
+        galleryAdminArea.classList.remove("hidden");
+        const linkInput = document.getElementById("galleryItemUrl");
+        if (linkInput) linkInput.focus();
+        return;
+      }
+
+      const isHidden = galleryAdminArea.classList.contains("hidden");
+      if (isHidden) {
+        galleryAdminArea.classList.remove("hidden");
+        document.getElementById("adminUsername").focus();
+      } else {
+        galleryAdminArea.classList.add("hidden");
+      }
+    });
+
+    ["adminUsername", "adminPassword"].forEach((id) => {
+      const field = document.getElementById(id);
+      if (!field) return;
+      field.addEventListener("keydown", (event) => {
+        if (event.key !== "Enter") return;
+        event.preventDefault();
+        const submitButton = document.querySelector("#galleryAdminLogin button[type='submit']");
+        if (submitButton instanceof HTMLElement) {
+          submitButton.click();
+        }
+      });
     });
 
     galleryAddForm.addEventListener("submit", (event) => {
@@ -1492,9 +1642,24 @@
 
       if (!url) return;
 
+      const driveId = getDriveFileId(url);
+      const driveFolder = isDriveFolderUrl(url);
+      const validDirect = isLikelyDirectMediaUrl(url);
+
+      if (driveFolder) {
+        galleryAdminStatus.textContent = "Please use Google Drive file links, not folder links.";
+        return;
+      }
+
+      if (!driveId && !validDirect) {
+        galleryAdminStatus.textContent = "Use a Google Drive file link or a direct media URL ending with image/video extension.";
+        return;
+      }
+
       galleryItems.unshift({ type, url, caption });
       saveGalleryItems();
       galleryAddForm.reset();
+      galleryAdminStatus.textContent = "Media added successfully.";
       renderGallery();
     });
 
@@ -1508,6 +1673,7 @@
 
       galleryItems.splice(index, 1);
       saveGalleryItems();
+      galleryAdminStatus.textContent = "Media deleted.";
       renderGallery();
     });
 
@@ -1527,6 +1693,7 @@
         const modalId = button.getAttribute("data-modal-open");
         setModalState(modalId, true);
         if (modalId === "galleryModal") {
+          resetGalleryAdminState();
           syncGalleryAdminUI();
           renderGallery();
         }
@@ -1538,6 +1705,9 @@
         const parentModal = button.closest(".modal-overlay");
         if (!parentModal) return;
         setModalState(parentModal.id, false);
+        if (parentModal.id === "galleryModal") {
+          resetGalleryAdminState();
+        }
       });
     });
 
@@ -1545,6 +1715,9 @@
       overlay.addEventListener("click", (event) => {
         if (event.target === overlay) {
           setModalState(overlay.id, false);
+          if (overlay.id === "galleryModal") {
+            resetGalleryAdminState();
+          }
         }
       });
     });
@@ -1553,6 +1726,9 @@
       if (event.key !== "Escape") return;
       document.querySelectorAll(".modal-overlay.open").forEach((overlay) => {
         setModalState(overlay.id, false);
+        if (overlay.id === "galleryModal") {
+          resetGalleryAdminState();
+        }
       });
     });
 
