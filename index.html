@@ -485,6 +485,134 @@
       font-size: 0.84rem;
     }
 
+    .gallery-note {
+      margin-bottom: 0.7rem;
+      color: #314239;
+      font-size: 0.88rem;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 0.7rem;
+      margin-top: 0.9rem;
+    }
+
+    .gallery-item {
+      background: #f8fbff;
+      border: 1px solid #cbdbf3;
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .gallery-media {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      background: #d7e6fb;
+      overflow: hidden;
+    }
+
+    .gallery-media img,
+    .gallery-media video,
+    .gallery-media iframe {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border: 0;
+    }
+
+    .gallery-meta {
+      padding: 0.55rem 0.6rem 0.65rem;
+      display: grid;
+      gap: 0.45rem;
+    }
+
+    .gallery-meta p {
+      font-size: 0.79rem;
+      color: #2c3d34;
+      line-height: 1.35;
+      margin: 0;
+    }
+
+    .gallery-actions {
+      display: flex;
+      gap: 0.55rem;
+      flex-wrap: wrap;
+      margin: 0.35rem 0 0.2rem;
+    }
+
+    .gallery-empty {
+      margin-top: 0.9rem;
+      border: 1px dashed #b7c9e5;
+      border-radius: 10px;
+      background: #f8fbff;
+      color: #3d516c;
+      padding: 0.85rem;
+      font-size: 0.86rem;
+    }
+
+    .gallery-admin {
+      margin-top: 0.85rem;
+      border: 1px solid #c5d8f3;
+      border-radius: 10px;
+      background: #f8fbff;
+      padding: 0.75rem;
+      display: grid;
+      gap: 0.65rem;
+    }
+
+    .gallery-admin h4 {
+      font-size: 0.9rem;
+      color: #1b345f;
+    }
+
+    .gallery-admin-form {
+      display: grid;
+      gap: 0.5rem;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .gallery-admin-form .full {
+      grid-column: 1 / -1;
+    }
+
+    .gallery-admin input,
+    .gallery-admin select {
+      width: 100%;
+      border: 1px solid #a7c0e3;
+      border-radius: 8px;
+      padding: 0.48rem 0.55rem;
+      font: inherit;
+      font-size: 0.82rem;
+      color: #213d66;
+      background: #fff;
+    }
+
+    .gallery-admin-status {
+      font-size: 0.78rem;
+      color: #31507f;
+    }
+
+    .gallery-delete {
+      border: 1px solid #c9464a;
+      background: #fff;
+      color: #9e2f35;
+      border-radius: 8px;
+      font-size: 0.74rem;
+      padding: 0.35rem 0.45rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
     .online-hub {
       padding-top: 0;
     }
@@ -778,6 +906,10 @@
       .section {
         padding: 3.2rem 0;
       }
+
+      .gallery-admin-form {
+        grid-template-columns: 1fr;
+      }
     }
 
     @media (min-width: 1180px) {
@@ -1035,8 +1167,37 @@
         <button class="close-modal" type="button" aria-label="Close" data-modal-close>&times;</button>
       </div>
       <div class="modal-body">
-        <p style="margin-bottom:0.8rem; color:#314239;">See our recent photos and moments from services and events.</p>
-        <a class="btn btn-primary" href="https://photos.app.goo.gl/HQmFE4bmpf1C8esM7" target="_blank" rel="noopener noreferrer">Open Google Photos Album</a>
+        <p class="gallery-note">See church photos and videos loaded from public Google Drive links. Use admin mode to add or remove items.</p>
+        <div class="gallery-actions">
+          <a class="btn btn-primary" href="https://photos.app.goo.gl/HQmFE4bmpf1C8esM7" target="_blank" rel="noopener noreferrer">Open Google Photos Album</a>
+        </div>
+
+        <div class="gallery-admin">
+          <h4>Admin Controls</h4>
+          <form id="galleryAdminLogin" class="gallery-admin-form" autocomplete="off">
+            <input type="text" id="adminUsername" placeholder="Admin username" required>
+            <input type="password" id="adminPassword" placeholder="Admin password" required>
+            <button class="btn btn-primary full" type="submit">Login to Manage Gallery</button>
+          </form>
+
+          <div id="galleryAdminControls" class="hidden">
+            <form id="galleryAddForm" class="gallery-admin-form" autocomplete="off">
+              <select id="galleryItemType" required>
+                <option value="photo">Photo</option>
+                <option value="video">Video</option>
+              </select>
+              <input type="url" id="galleryItemUrl" placeholder="Google Drive file link" required>
+              <input class="full" type="text" id="galleryItemCaption" placeholder="Caption (optional)">
+              <button class="btn btn-primary full" type="submit">Add to Gallery</button>
+            </form>
+            <button class="btn btn-soft" id="galleryAdminLogout" type="button">Logout</button>
+          </div>
+
+          <p id="galleryAdminStatus" class="gallery-admin-status">Admin login required to add or delete items.</p>
+        </div>
+
+        <div id="galleryGrid" class="gallery-grid"></div>
+        <p id="galleryEmpty" class="gallery-empty hidden">No gallery media yet. Add Google Drive photo/video links in admin mode.</p>
       </div>
     </div>
   </div>
@@ -1146,6 +1307,139 @@
     const mainNav = document.getElementById("mainNav");
     const navLinks = mainNav.querySelectorAll("a, button");
 
+    const galleryStorageKey = "vch_gallery_items_v1";
+    const galleryAdminSessionKey = "vch_gallery_admin_session_v1";
+    const adminUserHash = "d1b1dce7e11b1ebd9ae4be8a8c6f82b9af23420a9564326e0f21d71e49b06dc6";
+    const adminPasswordHash = "d52bdba3a935bf7fc0e508159506d6c9813569b938c6c4dc62db1994ad87b9cf";
+
+    const galleryGrid = document.getElementById("galleryGrid");
+    const galleryEmpty = document.getElementById("galleryEmpty");
+    const galleryAdminStatus = document.getElementById("galleryAdminStatus");
+    const galleryAdminLogin = document.getElementById("galleryAdminLogin");
+    const galleryAdminControls = document.getElementById("galleryAdminControls");
+    const galleryAddForm = document.getElementById("galleryAddForm");
+    const galleryAdminLogout = document.getElementById("galleryAdminLogout");
+
+    let galleryItems = loadGalleryItems();
+    let isGalleryAdmin = sessionStorage.getItem(galleryAdminSessionKey) === "1";
+
+    function loadGalleryItems() {
+      try {
+        const raw = localStorage.getItem(galleryStorageKey);
+        const parsed = raw ? JSON.parse(raw) : [];
+        return Array.isArray(parsed) ? parsed : [];
+      } catch {
+        return [];
+      }
+    }
+
+    function saveGalleryItems() {
+      localStorage.setItem(galleryStorageKey, JSON.stringify(galleryItems));
+    }
+
+    function getDriveFileId(inputUrl) {
+      if (!inputUrl) return "";
+      const url = inputUrl.trim();
+      const byPath = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
+      if (byPath) return byPath[1];
+      const byOpenId = url.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+      if (byOpenId) return byOpenId[1];
+      const byUc = url.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+      if (byUc) return byUc[1];
+      return "";
+    }
+
+    function toDrivePhotoUrl(fileId) {
+      return `https://lh3.googleusercontent.com/d/${fileId}=w1600`;
+    }
+
+    function toDriveVideoPreviewUrl(fileId) {
+      return `https://drive.google.com/file/d/${fileId}/preview`;
+    }
+
+    function syncGalleryAdminUI() {
+      galleryAdminControls.classList.toggle("hidden", !isGalleryAdmin);
+      galleryAdminLogin.classList.toggle("hidden", isGalleryAdmin);
+      galleryAdminStatus.textContent = isGalleryAdmin
+        ? "Admin mode active. You can add or delete gallery media."
+        : "Admin login required to add or delete items.";
+    }
+
+    function renderGallery() {
+      galleryGrid.innerHTML = "";
+      if (!galleryItems.length) {
+        galleryEmpty.classList.remove("hidden");
+        return;
+      }
+
+      galleryEmpty.classList.add("hidden");
+      galleryItems.forEach((item, index) => {
+        const card = document.createElement("article");
+        card.className = "gallery-item";
+
+        const mediaWrap = document.createElement("div");
+        mediaWrap.className = "gallery-media";
+
+        const sourceUrl = item.url.trim();
+        const driveId = getDriveFileId(sourceUrl);
+        if (item.type === "video") {
+          if (driveId) {
+            const iframe = document.createElement("iframe");
+            iframe.src = toDriveVideoPreviewUrl(driveId);
+            iframe.allow = "autoplay; encrypted-media";
+            mediaWrap.appendChild(iframe);
+          } else {
+            const video = document.createElement("video");
+            video.src = sourceUrl;
+            video.controls = true;
+            video.preload = "metadata";
+            mediaWrap.appendChild(video);
+          }
+        } else {
+          const image = document.createElement("img");
+          image.src = driveId ? toDrivePhotoUrl(driveId) : sourceUrl;
+          image.alt = item.caption || "Church gallery image";
+          image.loading = "lazy";
+          mediaWrap.appendChild(image);
+        }
+
+        const meta = document.createElement("div");
+        meta.className = "gallery-meta";
+
+        const caption = document.createElement("p");
+        caption.textContent = item.caption || (item.type === "video" ? "Church video" : "Church photo");
+        meta.appendChild(caption);
+
+        const openLink = document.createElement("a");
+        openLink.href = sourceUrl;
+        openLink.target = "_blank";
+        openLink.rel = "noopener noreferrer";
+        openLink.textContent = "Open original";
+        openLink.style.fontSize = "0.74rem";
+        openLink.style.color = "#1f4f99";
+        meta.appendChild(openLink);
+
+        if (isGalleryAdmin) {
+          const deleteBtn = document.createElement("button");
+          deleteBtn.type = "button";
+          deleteBtn.className = "gallery-delete";
+          deleteBtn.textContent = "Delete";
+          deleteBtn.dataset.index = String(index);
+          meta.appendChild(deleteBtn);
+        }
+
+        card.appendChild(mediaWrap);
+        card.appendChild(meta);
+        galleryGrid.appendChild(card);
+      });
+    }
+
+    async function sha256Hex(input) {
+      const bytes = new TextEncoder().encode(input);
+      const digest = await crypto.subtle.digest("SHA-256", bytes);
+      return Array.from(new Uint8Array(digest)).map((b) => b.toString(16).padStart(2, "0")).join("");
+    }
+
     menuToggle.addEventListener("click", () => {
       const expanded = menuToggle.getAttribute("aria-expanded") === "true";
       menuToggle.setAttribute("aria-expanded", String(!expanded));
@@ -1154,11 +1448,67 @@
 
     navLinks.forEach((item) => {
       item.addEventListener("click", () => {
-        if (window.innerWidth <= 760) {
+        if (window.innerWidth <= 860) {
           mainNav.classList.remove("open");
           menuToggle.setAttribute("aria-expanded", "false");
         }
       });
+    });
+
+    galleryAdminLogin.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const username = document.getElementById("adminUsername").value.trim();
+      const password = document.getElementById("adminPassword").value;
+
+      const userHash = await sha256Hex(username);
+      const passHash = await sha256Hex(password);
+
+      if (userHash === adminUserHash && passHash === adminPasswordHash) {
+        isGalleryAdmin = true;
+        sessionStorage.setItem(galleryAdminSessionKey, "1");
+        galleryAdminLogin.reset();
+        syncGalleryAdminUI();
+        renderGallery();
+        return;
+      }
+
+      galleryAdminStatus.textContent = "Invalid admin credentials.";
+    });
+
+    galleryAdminLogout.addEventListener("click", () => {
+      isGalleryAdmin = false;
+      sessionStorage.removeItem(galleryAdminSessionKey);
+      syncGalleryAdminUI();
+      renderGallery();
+    });
+
+    galleryAddForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      if (!isGalleryAdmin) return;
+
+      const type = document.getElementById("galleryItemType").value;
+      const url = document.getElementById("galleryItemUrl").value.trim();
+      const caption = document.getElementById("galleryItemCaption").value.trim();
+
+      if (!url) return;
+
+      galleryItems.unshift({ type, url, caption });
+      saveGalleryItems();
+      galleryAddForm.reset();
+      renderGallery();
+    });
+
+    galleryGrid.addEventListener("click", (event) => {
+      const target = event.target;
+      if (!(target instanceof HTMLElement) || !target.classList.contains("gallery-delete")) return;
+      if (!isGalleryAdmin) return;
+
+      const index = Number(target.dataset.index);
+      if (Number.isNaN(index) || index < 0 || index >= galleryItems.length) return;
+
+      galleryItems.splice(index, 1);
+      saveGalleryItems();
+      renderGallery();
     });
 
     const modalOpenButtons = document.querySelectorAll("[data-modal-open]");
@@ -1176,6 +1526,10 @@
       button.addEventListener("click", () => {
         const modalId = button.getAttribute("data-modal-open");
         setModalState(modalId, true);
+        if (modalId === "galleryModal") {
+          syncGalleryAdminUI();
+          renderGallery();
+        }
       });
     });
 
@@ -1214,6 +1568,8 @@
       { threshold: 0.15 }
     );
 
+    syncGalleryAdminUI();
+    renderGallery();
     document.querySelectorAll(".reveal").forEach((item) => observer.observe(item));
   </script>
 </body>
