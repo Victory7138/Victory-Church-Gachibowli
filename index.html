@@ -4,444 +4,1171 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Victory Church Gachibowli</title>
+  <meta name="description" content="Victory Church Gachibowli in Hyderabad. Join Sunday worship, submit prayer requests, and stay updated with events.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
-    /* Global Styles */
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
-    html { scroll-behavior: smooth; }
-    body { background-color: #f8f9fa; color: #222; line-height: 1.6; }
-    a { text-decoration: none; color: inherit; }
-
-    /* Header Navigation */
-    header { background: #fff; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-    nav { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; }
-    .logo-container { display: flex; align-items: center; gap: 10px; }
-    .logo-text { font-size: 1.3rem; font-weight: 800; color: #1a365d; text-transform: uppercase; letter-spacing: 0.5px; }
-    .logo-sub { font-size: 0.75rem; color: #e53e3e; display: block; font-weight: 600; }
-    .nav-links { list-style: none; display: flex; gap: 18px; align-items: center; }
-    .nav-links a { font-weight: 700; font-size: 0.85rem; color: #4a5568; letter-spacing: 0.5px; transition: color 0.2s; cursor: pointer; }
-    .nav-links a:hover { color: #e53e3e; }
-    
-    .btn-live-badge { background: #cc0000; color: #fff !important; padding: 8px 16px; border-radius: 20px; font-weight: 800; font-size: 0.85rem; display: flex; align-items: center; gap: 6px; box-shadow: 0 2px 6px rgba(204,0,0,0.3); transition: background 0.2s; }
-    .btn-live-badge:hover { background: #a30000; }
-
-    /* Hero Banner with Fallback Building Image / Video Loop wrapper */
-    .hero { background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('https://lh3.googleusercontent.com/gps-cs-s/AHRPTWmugNbTf0NeYUum6gVPHmuhJIxtwFD4u4ohIR1r1gX6goMci8aRxhNVjjKEUr2fsKDxZgYmGMkuii3Nt3apkRNjBLk6sn8i7i3a6uQ3wBi0UCuzFJoXTYmKJZpQzqwH9-KXwnJmlQiR0gvX=w1200-h800-k-no') center/cover no-repeat; color: #fff; text-align: center; padding: 110px 20px 80px; position: relative; overflow: hidden; }
-    .hero-video-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
-    .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.75); z-index: 1; }
-    .hero > * { position: relative; z-index: 2; }
-
-    .hero h1 { font-size: 2.8rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; line-height: 1.2; }
-    .hero p.tagline { max-width: 750px; margin: 15px auto 25px; font-size: 1.05rem; color: #e2e8f0; font-weight: 400; }
-    .hero-btns { display: flex; justify-content: center; gap: 15px; margin-bottom: 30px; }
-    .btn { padding: 12px 28px; border-radius: 4px; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; cursor: pointer; display: inline-block; border: none; text-align: center; }
-    .btn-red { background: #e53e3e; color: #fff; }
-    .btn-youtube { background: #cc0000; color: #fff; }
-
-    /* Quick Access Links Bar */
-    .quick-bar { background: #1a202c; color: #fff; padding: 18px 20px; border-bottom: 3px solid #cc0000; }
-    .quick-bar-container { max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-around; align-items: center; gap: 15px; text-align: center; }
-    .quick-bar a { font-weight: 700; font-size: 0.9rem; color: #edf2f7; background: #2d3748; padding: 8px 18px; border-radius: 4px; transition: background 0.2s; cursor: pointer; }
-    .quick-bar a:hover { background: #cc0000; }
-
-    /* Main Container & Layout */
-    .section-container { max-width: 1100px; margin: 60px auto; padding: 0 20px; }
-    .section-heading { text-align: center; font-size: 2.2rem; font-weight: 900; text-transform: uppercase; color: #1a202c; margin-bottom: 40px; letter-spacing: 1px; }
-
-    /* Live Stream Banner Block */
-    .live-banner { background: #111827; color: #fff; border-radius: 10px; padding: 40px; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.15); border: 2px solid #cc0000; }
-    .live-banner h3 { font-size: 1.8rem; margin-bottom: 10px; color: #fff; }
-    .live-banner p { color: #9ca3af; max-width: 600px; margin: 0 auto 25px; }
-
-    /* Service Times Module */
-    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
-    .service-card { background: #fff; border-top: 4px solid #cc0000; padding: 30px 25px; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-    .service-card h3 { font-size: 1.3rem; margin-bottom: 15px; color: #1a202c; border-bottom: 1px solid #edf2f7; padding-bottom: 10px; }
-    .service-time-item { margin-bottom: 12px; }
-    .service-time-item strong { color: #2b6cb0; display: block; font-size: 0.95rem; }
-    .service-time-item span { color: #4a5568; font-size: 0.9rem; }
-
-    /* Location & Integrated Reviews Section */
-    .location-section { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; background: #fff; padding: 35px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); align-items: start; }
-    @media (max-width: 850px) { .location-section { grid-template-columns: 1fr; } }
-    .map-frame { width: 100%; height: 260px; border: 0; border-radius: 8px; margin-top: 15px; }
-
-    .review-preview-card { background: #f8fafc; border-left: 4px solid #f59e0b; padding: 15px; border-radius: 6px; margin-bottom: 12px; }
-    .review-stars { color: #f59e0b; font-size: 1rem; margin-bottom: 4px; }
-    .review-quote { font-style: italic; font-size: 0.9rem; color: #334155; }
-    .review-author { font-weight: 700; font-size: 0.8rem; color: #1a365d; margin-top: 5px; }
-
-    /* Media Grid */
-    .media-categories { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; text-align: center; }
-    .media-box { background: #fff; padding: 25px; border-radius: 8px; font-weight: 800; text-transform: uppercase; color: #2d3748; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border: 1px solid #edf2f7; transition: all 0.2s; display: block; cursor: pointer; }
-    .media-box:hover { transform: translateY(-3px); border-color: #cc0000; color: #cc0000; box-shadow: 0 6px 15px rgba(204,0,0,0.1); }
-
-    /* Footer Styles with Follow Us On */
-    footer { background: #0d1117; color: #8b949e; text-align: center; padding: 40px 20px; font-size: 0.85rem; border-top: 1px solid #21262d; }
-    .footer-follow-container { margin-bottom: 20px; }
-    .footer-follow-title { font-weight: 700; font-size: 0.9rem; color: #c9d1d9; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
-    .footer-social-icons { display: flex; justify-content: center; gap: 15px; align-items: center; }
-    footer p { margin-bottom: 8px; }
-
-    /* Social Icons Styling */
-    .social-icon { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: transform 0.2s; }
-    .social-icon:hover { transform: scale(1.1); }
-    .whatsapp-icon { background: #25d366; color: #fff; }
-    .instagram-icon { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #df5950 45%, #c62484 60%, #4e65d1 90%); color: #fff; }
-    .social-icon svg { width: 16px; height: 16px; fill: currentColor; }
-
-    /* Modals Overlay Styling */
-    .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); z-index: 2000; justify-content: center; align-items: center; padding: 20px; }
-    .modal-content { background: #fff; width: 100%; max-width: 850px; border-radius: 12px; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.3); animation: modalPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-    @keyframes modalPop { from { opacity: 0; transform: scale(0.9) translateY(-10px); } to { opacity: 1; transform: scale(1) translateY(0); } }
-    
-    .modal-header { background: linear-gradient(135deg, #1a365d, #0f172a); color: #fff; padding: 20px 25px; display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #cc0000; }
-    .modal-header h2 { font-size: 1.4rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
-    .close-btn { font-size: 1.8rem; font-weight: bold; color: #fff; cursor: pointer; line-height: 1; transition: color 0.2s; }
-    .close-btn:hover { color: #e53e3e; }
-    .modal-body { padding: 20px; max-height: 78vh; overflow-y: auto; }
-
-    /* Google Form iFrame Styling */
-    .form-iframe { width: 100%; height: 600px; border: 0; }
-  </style>
-</head>
-<body>
-
-  <!-- Header Navigation -->
-  <header>
-    <nav>
-      <div class="logo-container">
-        <div>
-          <span class="logo-text">Victory Church</span>
-          <span class="logo-sub">Gachibowli, Hyderabad</span>
-        </div>
-      </div>
-      <ul class="nav-links">
-        <li><a href="#home">HOME</a></li>
-        <li><a onclick="openEventsModal()">EVENTS</a></li>
-        <li><a href="#media">MEDIA</a></li>
-        <li><a href="#about">ABOUT</a></li>
-        <li>
-          <a href="https://youtube.com/@victorychurchgachibowli2888/live" target="_blank" rel="noopener noreferrer" class="btn-live-badge">
-            <span>🔴</span> WATCH LIVE
-          </a>
-        </li>
-      </ul>
-    </nav>
-  </header>
-
-  <!-- Hero Section with Background Video Loop Container -->
-  <section class="hero" id="home">
-    <video class="hero-video-bg" autoplay muted loop playsinline>
-      <source src="https://assets.mixkit.co/videos/preview/mixkit-software-code-of-a-program-on-a-computer-screen-42289-large.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-    <div class="hero-overlay"></div>
-    
-    <h1>Changing Lives<br>Making Disciples<br>Reaching The World</h1>
-    <p class="tagline">Victory Church Gachibowli passionately follows the word of God to preach the Gospel. Join us in person or watch our live stream on YouTube!</p>
-    <div class="hero-btns">
-      <a href="#about" class="btn btn-red">Learn More</a>
-      <a href="https://youtube.com/@victorychurchgachibowli2888/live" target="_blank" rel="noopener noreferrer" class="btn btn-youtube">
-        Watch YouTube Live
-      </a>
-    </div>
-  </section>
-
-  <!-- Quick Access Links Bar -->
-  <div class="quick-bar">
-    <div class="quick-bar-container">
-      <a href="https://youtube.com/@victorychurchgachibowli2888" target="_blank" rel="noopener noreferrer">▶ Official YouTube Channel</a>
-      <a onclick="openVisitorModal()">📝 New Visitor Entry Form</a>
-      <a onclick="openEventsModal()">August Events Calendar</a>
-      <a onclick="openPrayerModal()">Submit Prayer Request</a>
-    </div>
-  </div>
-
-  <!-- Dedicated Live Stream Banner -->
-  <section class="section-container" id="live">
-    <div class="live-banner">
-      <h3>Join Our Sunday Services Online</h3>
-      <p>Subscribe to our official YouTube channel to get notified whenever we go live with Telugu & English Sunday Worship Services.</p>
-      <a href="https://youtube.com/@victorychurchgachibowli2888?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn btn-youtube">
-        Subscribe Channel
-      </a>
-    </div>
-  </section>
-
-  <!-- Service Times Section -->
-  <section class="section-container" id="events">
-    <h2 class="section-heading">Service Times</h2>
-    <div class="services-grid">
-      <div class="service-card">
-        <h3>Sunday Services</h3>
-        <div class="service-time-item">
-          <strong>Telugu & English Service</strong>
-          <span>10:30 AM – 12:30 PM</span>
-        </div>
-        <div class="service-time-item">
-          <strong>Hindi & English Service</strong>
-          <span>6:30 PM – 8:00 PM</span>
-        </div>
-      </div>
-      <div class="service-card">
-        <h3>Mid-Week Service</h3>
-        <div class="service-time-item">
-          <strong>Personal Prayer</strong>
-          <span>6:30 PM</span>
-        </div>
-        <div class="service-time-item">
-          <strong>Wednesday Mid-Week Prayer</strong>
-          <span>7:30 PM</span>
-        </div>
-      </div>
-      <div class="service-card">
-        <h3>Weekday Prayer & School</h3>
-        <div class="service-time-item">
-          <strong>Weekday Prayer Meetings</strong>
-          <span>Monday–Saturday: 8:00 AM – 11:00 AM</span>
-        </div>
-        <div class="service-time-item">
-          <strong>Sunday School</strong>
-          <span>Every Sunday: 11:00 AM (below 15 Yrs)</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Media & Resources Section -->
-  <section class="section-container" id="media">
-    <h2 class="section-heading">Media & Channel Links</h2>
-    <div class="media-categories">
-      <a href="https://youtube.com/@victorychurchgachibowli2888/live" target="_blank" rel="noopener noreferrer" class="media-box">Latest Live Stream</a>
-      <a href="https://www.youtube.com/@victorychurchgachibowli2888/videos" target="_blank" rel="noopener noreferrer" class="media-box">Sermon Videos</a>
-      <a onclick="openGalleryModal()" class="media-box">Photo Gallery</a>
-      <a href="https://youtube.com/@victorychurchgachibowli2888?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="media-box">Subscribe Channel</a>
-    </div>
-  </section>
-
-  <!-- Location & Reviews Section -->
-  <section class="section-container" id="about">
-    <h2 class="section-heading">Location & Reviews</h2>
-    <div class="location-section">
-      <!-- Address & Map -->
-      <div>
-        <h3 style="font-size: 1.4rem; margin-bottom: 12px; color: #1a365d;">Visit Victory Church</h3>
-        <p style="margin-bottom: 10px;"><strong>Address:</strong><br>Ideal Square Building,<br>3rd Floor Above Westside Shoppingmall, Gachibowli,<br>Hyderabad, Telangana 500032</p>
-        <p style="margin-bottom: 15px;"><strong>Services:</strong> In-person and online streaming on our official YouTube channel.</p>
-        <iframe class="map-frame" src="https://maps.google.com/maps?q=Victory%20Church%20Gachibowli%20Hyderabad&t=&z=15&ie=UTF8&iwloc=&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        
-        <a href="https://www.google.com/maps/dir//Victory+Church+Gachibowli+Hyderabad" target="_blank" rel="noopener noreferrer" class="btn btn-red" style="width: 100%; margin-top: 15px; font-size: 0.85rem; display: block; text-align: center;">
-          📍 Navigation & Directions
-        </a>
-      </div>
-
-      <!-- Reviews Section in Location -->
-      <div>
-        <h3 style="font-size: 1.4rem; margin-bottom: 12px; color: #1a365d;">Church Reviews ★★★★★</h3>
-        
-        <div class="review-preview-card">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-quote">"Nice church to worship, heart touching spiritual sermons, ambience is good and well maintained."</p>
-          <div class="review-author">— Yash (Gachibowli)</div>
-        </div>
-
-        <div class="review-preview-card">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-quote">"Excellent worship and peaceful atmosphere. Truly feel blessed every Sunday."</p>
-          <div class="review-author">— Sandeep (Hyderabad)</div>
-        </div>
-
-        <a href="https://www.google.com/maps/place/Victory+Church/@17.4421039,78.3590724,17z/data=!4m8!3m7!1s0x3bcb9395ba2b6ecb:0x5124b828b886f9a5!8m2!3d17.4421039!4d78.3590724!9m1!1b1!16s%2Fg%2F1264728bp" target="_blank" rel="noopener noreferrer" class="btn btn-red" style="width: 100%; margin-top: 10px; font-size: 0.85rem; display: block; text-align: center;">
-          ★ View Reviews & Write a Review
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer with Follow Us On -->
-  <footer>
-    <div class="footer-follow-container">
-      <div class="footer-follow-title">Follow Us On</div>
-      <div class="footer-social-icons">
-        <a href="https://wa.me/918688607138" target="_blank" rel="noopener noreferrer" class="social-icon whatsapp-icon" title="Chat on WhatsApp">
-          <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-        </a>
-        <a href="https://www.instagram.com/victorychurch.gachibowli" target="_blank" rel="noopener noreferrer" class="social-icon instagram-icon" title="View Google Photos Album">
-          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-        </a>
-      </div>
-    </div>
-    <p>&copy; 2026 Victory Church Gachibowli. All rights reserved.</p>
-    <p>500032 Hyderabad, Telangana, India</p>
-  </footer>
-
-  <!-- Photo Gallery & Video Modal Popup -->
-  <div id="galleryModal" class="modal-overlay" onclick="closeGalleryModal(event)">
-    <div class="modal-content" onclick="event.stopPropagation()">
-      <div class="modal-header">
-        <h2>Victory Church Gallery & Video</h2>
-        <span class="close-btn" onclick="closeGalleryModal(true)">&times;</span>
-      </div>
-      <div class="modal-body" style="text-align: center; padding: 25px;">
-        <!-- Embedded YouTube Video Player Placeholder (Reliable Stream) -->
-        <iframe width="100%" height="380" src="https://www.youtube.com/embed/YOUR_VIDEO_ID" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border-radius: 8px; margin-bottom: 20px;"></iframe>
-
-        <div>
-          <a href="https://photos.app.goo.gl/HQmFE4bmpf1C8esM7" target="_blank" rel="noopener noreferrer" class="btn btn-red" style="font-size: 0.85rem;">
-            📍 Open Google Photos Album
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Visitors Entry Form Modal Popup -->
-  <div id="visitorModal" class="modal-overlay" onclick="closeVisitorModal(event)">
-    <div class="modal-content" onclick="event.stopPropagation()">
-      <div class="modal-header">
-        <h2>Visitors Entry Form</h2>
-        <span class="close-btn" onclick="closeVisitorModal(true)">&times;</span>
-      </div>
-      <div class="modal-body" style="padding: 0;">
-        <iframe class="form-iframe" src="https://docs.google.com/forms/d/e/1FAIpQLSfKlbj2rHYalykSc7vmNw4cYqLTwEB_lUBjppvGEp6_FAnKLA/viewform?embedded=true">Loading…</iframe>
-      </div>
-    </div>
-  </div>
-
-  <!-- Events Modal Popup -->
-  <div id="eventsModal" class="modal-overlay" onclick="closeEventsModal(event)">
-    <div class="modal-content" onclick="event.stopPropagation()">
-      <div class="modal-header">
-        <h2>August 2026 Events</h2>
-        <span class="close-btn" onclick="closeEventsModal(true)">&times;</span>
-      </div>
-      <div class="modal-body" style="padding: 20px;">
-        
-        <div class="event-item" style="display: flex; gap: 15px; padding: 12px 0; border-bottom: 1px solid #edf2f7;">
-          <div style="background:#cc0000; color:#fff; padding:10px; border-radius:6px; text-align:center; min-width:65px;">
-            <span style="font-size:1.4rem; font-weight:800; display:block; line-height:1;">1</span>
-            <span style="font-size:0.7rem;">AUG</span>
-          </div>
-          <div>
-            <h4 style="font-size:1rem; color:#1a202c;">Serious Men’s Class</h4>
-            <p style="font-size:0.85rem; color:#4a5568;"><strong>Morning:</strong> Men Breakfast @Ella<br><strong><strong>Details:</strong> Monthly men's gathering and teaching.</p>
-          </div>
-        </div>
-
-        <div class="event-item" style="display: flex; gap: 15px; padding: 12px 0; border-bottom: 1px solid #edf2f7;">
-          <div style="background:#cc0000; color:#fff; padding:10px; border-radius:6px; text-align:center; min-width:65px;">
-            <span style="font-size:1.4rem; font-weight:800; display:block; line-height:1;">8</span>
-            <span style="font-size:0.7rem;">AUG</span>
-          </div>
-          <div>
-            <h4 style="font-size:1rem; color:#1a202c;">Women Meet & Manikonda Grand Opening</h4>
-            <p style="font-size:0.85rem; color:#4a5568;"><strong>Morning:</strong> Women Breakfast @Ella<br><strong>Evening:</strong> Manikonda Church Grand Opening</p>
-          </div>
-        </div>
-
-        <div class="event-item" style="display: flex; gap: 15px; padding: 12px 0; border-bottom: 1px solid #edf2f7;">
-          <div style="background:#cc0000; color:#fff; padding:10px; border-radius:6px; text-align:center; min-width:65px;">
-            <span style="font-size:1.4rem; font-weight:800; display:block; line-height:1;">10-11</span>
-            <span style="font-size:0.7rem;">AUG</span>
-          </div>
-          <div>
-            <h4 style="font-size:1rem; color:#1a202c;">Revivals in Chandanagar</h4>
-            <p style="font-size:0.85rem; color:#4a5568;"><strong>Details:</strong> Special revival meetings in Chandanagar.</p>
-          </div>
-        </div>
-
-        <div class="event-item" style="display: flex; gap: 15px; padding: 12px 0; border-bottom: 1px solid #edf2f7;">
-          <div style="background:#cc0000; color:#fff; padding:10px; border-radius:6px; text-align:center; min-width:65px;">
-            <span style="font-size:1.4rem; font-weight:800; display:block; line-height:1;">13</span>
-            <span style="font-size:0.7rem;">AUG</span>
-          </div>
-          <div>
-            <h4 style="font-size:1rem; color:#1a202c;">Men’s Discipleship with John Perry</h4>
-            <p style="font-size:0.85rem; color:#4a5568;"><strong>Details:</strong> Special discipleship session with John Perry.</p>
-          </div>
-        </div>
-
-        <div class="event-item" style="display: flex; gap: 15px; padding: 12px 0; border-bottom: 1px solid #edf2f7;">
-          <div style="background:#cc0000; color:#fff; padding:10px; border-radius:6px; text-align:center; min-width:65px;">
-            <span style="font-size:1.4rem; font-weight:800; display:block; line-height:1;">14</span>
-            <span style="font-size:0.7rem;">AUG</span>
-          </div>
-          <div>
-            <h4 style="font-size:1rem; color:#1a202c;">Home Bible Study</h4>
-            <p style="font-size:0.85rem; color:#4a5568;"><strong>Details:</strong> Area-wide fellowship and study.</p>
-          </div>
-        </div>
-
-        <div class="event-item" style="display: flex; gap: 15px; padding: 12px 0; border-bottom: 1px solid #edf2f7;">
-          <div style="background:#cc0000; color:#fff; padding:10px; border-radius:6px; text-align:center; min-width:65px;">
-            <span style="font-size:1.4rem; font-weight:800; display:block; line-height:1;">15</span>
-            <span style="font-size:0.7rem;">AUG</span>
-          </div>
-          <div>
-            <h4 style="font-size:1rem; color:#1a202c;">Serious Men's Class & Game Night</h4>
-            <p style="font-size:0.85rem; color:#4a5568;"><strong>Morning:</strong> Serious Men’s Class<br><strong>Evening:</strong> Game Night</p>
-          </div>
-        </div>
-
-        <div class="event-item" style="display: flex; gap: 15px; padding: 12px 0; border-bottom: 1px solid #edf2f7;">
-          <div style="background:#cc0000; color:#fff; padding:10px; border-radius:6px; text-align:center; min-width:65px;">
-            <span style="font-size:1.4rem; font-weight:800; display:block; line-height:1;">23-26</span>
-            <span style="font-size:0.7rem;">AUG</span>
-          </div>
-          <div>
-            <h4 style="font-size:1rem; color:#1a202c;">Revivals with Pastor Nehemiah</h4>
-            <p style="font-size:0.85rem; color:#4a5568;"><strong>Location:</strong> Gachibowli</p>
-          </div>
-        </div>
-
-        <div class="event-item" style="display: flex; gap: 15px; padding: 12px 0;">
-          <div style="background:#cc0000; color:#fff; padding:10px; border-radius:6px; text-align:center; min-width:65px;">
-            <span style="font-size:1.4rem; font-weight:800; display:block; line-height:1;">28-30</span>
-            <span style="font-size:0.7rem;">AUG</span>
-          </div>
-          <div>
-            <h4 style="font-size:1rem; color:#1a202c;">Revivals in Madhapur with Pastor Jeevan</h4>
-            <p style="font-size:0.85rem; color:#4a5568;"><strong>Dates:</strong> August 28, 29, and 30</p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <!-- Prayer Request Modal Popup -->
-  <div id="prayerModal" class="modal-overlay" onclick="closePrayerModal(event)">
-    <div class="modal-content" onclick="event.stopPropagation()">
-      <div class="modal-header">
-        <h2>Healing & Prayer Request</h2>
-        <span class="close-btn" onclick="closePrayerModal(true)">&times;</span>
-      </div>
-      <div class="modal-body" style="padding: 0;">
-        <iframe class="form-iframe" src="https://docs.google.com/forms/d/e/1FAIpQLScyrvUZsSoTVkH5fIhBoNW6b3JzgR1qYeXqcm6dG4_ticLh_g/viewform?embedded=true">Loading…</iframe>
-      </div>
-    </div>
-  </div>
-
-  <!-- JavaScript Handlers for Popup Modals -->
-  <script>
-    function openGalleryModal() { 
-      document.getElementById('galleryModal').style.display = 'flex'; 
+    :root {
+      --bg: #edf3fe;
+      --ink: #10294f;
+      --ink-soft: #2f4972;
+      --surface: #ffffff;
+      --surface-2: #f4f8ff;
+      --accent: #b03235;
+      --accent-dark: #871f24;
+      --gold: #2b5eaf;
+      --line: #c9d9f2;
+      --hero-shadow: rgba(5, 16, 38, 0.48);
+      --radius: 14px;
+      --radius-sm: 10px;
+      --max: 1140px;
+      --lift: 0 14px 30px rgba(24, 52, 97, 0.12);
+      --ease: 260ms cubic-bezier(.22, .61, .36, 1);
     }
-    function closeGalleryModal(force) { 
-      if (force === true || event.target.id === 'galleryModal') {
-        document.getElementById('galleryModal').style.display = 'none';
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Plus Jakarta Sans", "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 90% -10%, #d9e7fb 0%, rgba(217, 231, 251, 0) 38%),
+        radial-gradient(circle at -5% 45%, #eaf2ff 0%, rgba(234, 242, 255, 0) 30%),
+        var(--bg);
+      line-height: 1.65;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(100% - 2.2rem, var(--max));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(12px);
+      background: linear-gradient(90deg, rgba(8, 28, 61, 0.9), rgba(16, 42, 85, 0.9));
+    }
+
+    .nav-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 76px;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      color: #fff;
+      min-width: 0;
+      padding: 0;
+      flex: 0 1 auto;
+      overflow: visible;
+    }
+
+    .brand-logo {
+      height: 66px;
+      width: auto;
+      max-width: clamp(220px, 30vw, 360px);
+      display: block;
+      object-fit: contain;
+      transform: none;
+      filter: drop-shadow(0 3px 10px rgba(0, 0, 0, 0.45)) saturate(1.08) contrast(1.05);
+    }
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .menu-toggle {
+      display: none;
+      border: 1px solid rgba(231, 239, 255, 0.56);
+      background: transparent;
+      color: #f0f6ff;
+      padding: 0.45rem 0.65rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 1.1rem;
+      align-items: center;
+      flex-shrink: 0;
+      color: #eef5ff;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .nav-links a:hover,
+    .nav-links button:hover {
+      color: #ffccd0;
+    }
+
+    .nav-links button {
+      border: 0;
+      background: transparent;
+      color: inherit;
+      font: inherit;
+      text-transform: inherit;
+      letter-spacing: inherit;
+      cursor: pointer;
+    }
+
+    .btn-live {
+      background: linear-gradient(135deg, #c63f42, #a1262b);
+      color: #fff;
+      padding: 0.55rem 0.9rem;
+      border-radius: 999px;
+      transition: transform var(--ease), box-shadow var(--ease);
+      box-shadow: 0 8px 18px rgba(176, 50, 53, 0.36);
+    }
+
+    .btn-live:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(176, 50, 53, 0.42);
+      color: #fff;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 82vh;
+      display: grid;
+      align-items: end;
+      color: #fffdf8;
+      overflow: hidden;
+      border-bottom: 2px solid #1e447f;
+      background: #0e254d;
+    }
+
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(110deg, rgba(9, 24, 56, 0.54), rgba(16, 36, 74, 0.24) 42%, rgba(117, 24, 29, 0.34));
+    }
+
+    @keyframes heroSettle {
+      from { transform: scale(1.08); }
+      to { transform: scale(1.03); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding: 7.2rem 0 4.6rem;
+      max-width: 780px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      border: 1px solid rgba(211, 226, 255, 0.78);
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.6px;
+      font-size: 0.72rem;
+      margin-bottom: 1rem;
+      color: #e8f1ff;
+      background: rgba(12, 33, 70, 0.38);
+    }
+
+    .hero h1 {
+      font-family: "Fraunces", serif;
+      font-size: clamp(1.85rem, 5.2vw, 3.8rem);
+      line-height: 1.05;
+      max-width: 12ch;
+      text-shadow: 0 4px 18px var(--hero-shadow);
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      max-width: 62ch;
+      color: #e8f0ff;
+      font-size: clamp(0.98rem, 1.8vw, 1.1rem);
+      margin-bottom: 1.7rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: 0;
+      cursor: pointer;
+      padding: 0.8rem 1.2rem;
+      border-radius: 10px;
+      font-weight: 800;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: transform var(--ease), box-shadow var(--ease), background var(--ease);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      color: #fff;
+      box-shadow: 0 10px 22px rgba(176, 50, 53, 0.34);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(142, 49, 27, 0.4);
+    }
+
+    .btn-soft {
+      border: 1px solid rgba(220, 234, 255, 0.65);
+      background: rgba(211, 227, 255, 0.12);
+      color: #f3f8ff;
+    }
+
+    .btn-soft:hover {
+      transform: translateY(-2px);
+      background: rgba(211, 227, 255, 0.22);
+    }
+
+    .stats-band {
+      background: linear-gradient(90deg, #123062, #1e4b8f);
+      border-bottom: 1px solid rgba(233, 241, 255, 0.2);
+      color: #eaf2ff;
+    }
+
+    .stats-grid {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      padding: 1rem 0;
+    }
+
+    .stat {
+      padding: 0.65rem 0.75rem;
+      border-right: 1px solid rgba(234, 243, 255, 0.24);
+    }
+
+    .stat:last-child {
+      border-right: none;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 0.8rem;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+      color: #ffcccc;
+      margin-bottom: 0.3rem;
+    }
+
+    .stat span {
+      font-size: 0.9rem;
+      color: #eef5ff;
+    }
+
+    .action-ribbon {
+      background: #e8f0ff;
+      border-bottom: 1px solid var(--line);
+      padding: 1rem 0;
+    }
+
+    .ribbon-links {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.7rem;
+    }
+
+    .ribbon-links a,
+    .ribbon-links button {
+      padding: 0.75rem 0.85rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid #c4d6f2;
+      background: #f8fbff;
+      text-align: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      color: #224071;
+      transition: transform var(--ease), background var(--ease), color var(--ease), border-color var(--ease);
+      cursor: pointer;
+    }
+
+    .ribbon-links a:hover,
+    .ribbon-links button:hover {
+      transform: translateY(-2px);
+      background: #fff;
+      border-color: #89a8da;
+      color: #173365;
+    }
+
+    .section {
+      padding: 4rem 0;
+    }
+
+    .section-title {
+      font-family: "Fraunces", serif;
+      font-size: clamp(1.7rem, 4vw, 2.8rem);
+      line-height: 1.05;
+      margin-bottom: 0.55rem;
+      color: #17251d;
+    }
+
+    .section-copy {
+      color: var(--ink-soft);
+      max-width: 66ch;
+      margin-bottom: 1.7rem;
+    }
+
+    .cards-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--lift);
+      padding: 1.15rem;
+    }
+
+    .card h3 {
+      font-family: "Fraunces", serif;
+      font-size: 1.2rem;
+      margin-bottom: 0.75rem;
+      color: #1e3026;
+    }
+
+    .agenda-item {
+      padding: 0.65rem 0;
+      border-bottom: 1px dashed #d6cab4;
+    }
+
+    .agenda-item:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .agenda-item strong {
+      display: block;
+      color: #20352a;
+      font-size: 0.9rem;
+    }
+
+    .agenda-item span {
+      color: #4b5f53;
+      font-size: 0.85rem;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .map-frame {
+      width: 100%;
+      height: clamp(240px, 38vw, 320px);
+      border: 1px solid #cebfa4;
+      border-radius: 12px;
+      margin: 0.9rem 0;
+    }
+
+    .reviews {
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    .review {
+      background: #f7faff;
+      border: 1px solid #cadbf3;
+      border-left: 4px solid #2f5ca8;
+      border-radius: 10px;
+      padding: 0.85rem 0.95rem;
+    }
+
+    .review p {
+      color: #314138;
+      font-size: 0.89rem;
+      font-style: italic;
+      margin-bottom: 0.4rem;
+    }
+
+    .review span {
+      font-size: 0.8rem;
+      color: #1d2c24;
+      font-weight: 700;
+    }
+
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.9rem;
+    }
+
+    .media-link {
+      display: block;
+      background: #f8fbff;
+      border: 1px solid #c6d9f4;
+      border-radius: 12px;
+      padding: 1rem;
+      min-height: 120px;
+      transition: transform var(--ease), box-shadow var(--ease), border-color var(--ease);
+      box-shadow: 0 8px 18px rgba(24, 52, 97, 0.08);
+    }
+
+    .media-link:hover {
+      transform: translateY(-3px);
+      border-color: #7f9fce;
+      box-shadow: 0 16px 30px rgba(24, 52, 97, 0.14);
+    }
+
+    .media-link h4 {
+      font-family: "Fraunces", serif;
+      margin-bottom: 0.35rem;
+      font-size: 1.08rem;
+      color: #1d2f25;
+    }
+
+    .media-link p {
+      color: #445649;
+      font-size: 0.84rem;
+    }
+
+    .online-hub {
+      padding-top: 0;
+    }
+
+    .online-card {
+      background: linear-gradient(130deg, #153668, #214987);
+      border: 1px solid #4d73af;
+      border-radius: 14px;
+      color: #f3e8cb;
+      box-shadow: 0 14px 30px rgba(14, 35, 71, 0.28);
+      padding: 1.3rem;
+    }
+
+    .online-card h3 {
+      font-family: "Fraunces", serif;
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
+      color: #f6f9ff;
+    }
+
+    .online-card p {
+      color: #deebff;
+      max-width: 58ch;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .online-actions {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .footer {
+      padding: 2.6rem 0;
+      background: #10294f;
+      color: #dce9ff;
+      border-top: 2px solid #214b88;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .footer h3 {
+      font-family: "Fraunces", serif;
+      color: #f1e7ca;
+      margin-bottom: 0.35rem;
+    }
+
+    .footer p {
+      font-size: 0.88rem;
+      color: #d6ddd1;
+    }
+
+    .socials {
+      display: flex;
+      gap: 0.6rem;
+      justify-content: flex-start;
+      margin-top: 0.8rem;
+    }
+
+    .socials a {
+      border: 1px solid #4e76b3;
+      color: #eef4ff;
+      border-radius: 999px;
+      padding: 0.35rem 0.7rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .socials a:hover {
+      background: #1f4379;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 720ms var(--ease), transform 720ms var(--ease);
+    }
+
+    .reveal.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(8, 12, 9, 0.72);
+      z-index: 1200;
+      padding: 1rem;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+      animation: fadeIn 200ms ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .modal {
+      width: min(920px, 100%);
+      max-height: 88vh;
+      overflow: hidden;
+      border-radius: 14px;
+      border: 1px solid #cab99b;
+      background: #fffdf8;
+      box-shadow: 0 22px 40px rgba(12, 18, 13, 0.32);
+      transform: translateY(8px);
+      animation: modalLift 220ms ease forwards;
+    }
+
+    @keyframes modalLift {
+      from { transform: translateY(14px); }
+      to { transform: translateY(0); }
+    }
+
+    .modal-head {
+      background: linear-gradient(90deg, #173665, #244f8e);
+      color: #fff9eb;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 1.1rem;
+    }
+
+    .modal-head h2 {
+      font-family: "Fraunces", serif;
+      font-size: 1.25rem;
+    }
+
+    .close-modal {
+      border: 0;
+      background: transparent;
+      color: #fff4d5;
+      font-size: 1.8rem;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .modal-body {
+      padding: 1rem;
+      overflow-y: auto;
+      max-height: calc(88vh - 64px);
+    }
+
+    .form-iframe {
+      width: 100%;
+      height: min(74vh, 620px);
+      border: 0;
+      border-radius: 10px;
+    }
+
+    @media (max-width: 1120px) {
+      .nav-links {
+        gap: 0.75rem;
+        font-size: 0.78rem;
+      }
+
+      .brand-logo {
+        height: 60px;
+        max-width: clamp(200px, 28vw, 320px);
       }
     }
 
-    function openVisitorModal() { document.getElementById('visitorModal').style.display = 'flex'; }
-    function closeVisitorModal(force) { if (force === true || event.target.id === 'visitorModal') document.getElementById('visitorModal').style.display = 'none'; }
+    .event-list {
+      display: grid;
+      gap: 0.75rem;
+    }
 
-    function openEventsModal() { document.getElementById('eventsModal').style.display = 'flex'; }
-    function closeEventsModal(force) { if (force === true || event.target.id === 'eventsModal') document.getElementById('eventsModal').style.display = 'none'; }
+    .event-item {
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: 0.7rem;
+      padding: 0.65rem;
+      border: 1px solid #cbdbf3;
+      border-radius: 10px;
+      background: #f7faff;
+    }
 
-    function openPrayerModal() { document.getElementById('prayerModal').style.display = 'flex'; }
-    function closePrayerModal(force) { if (force === true || event.target.id === 'prayerModal') document.getElementById('prayerModal').style.display = 'none'; }
+    .event-date {
+      background: linear-gradient(180deg, #bc4b2d, #9f3d23);
+      color: #fff;
+      border-radius: 8px;
+      text-align: center;
+      padding: 0.45rem 0.25rem;
+      align-self: start;
+    }
+
+    .event-date strong {
+      display: block;
+      font-size: 1rem;
+      line-height: 1.1;
+    }
+
+    .event-date span {
+      font-size: 0.69rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .event-item h4 {
+      color: #1f3228;
+      margin-bottom: 0.25rem;
+      font-size: 0.97rem;
+    }
+
+    .event-item p {
+      color: #425349;
+      font-size: 0.84rem;
+    }
+
+    @media (max-width: 980px) {
+      .cards-3,
+      .media-grid,
+      .ribbon-links,
+      .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .two-col,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 860px) {
+      .menu-toggle {
+        display: inline-flex;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 76px;
+        left: 0;
+        right: 0;
+        background: #102d58;
+        border-top: 1px solid rgba(221, 235, 255, 0.24);
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 0.8rem 1.1rem 1rem;
+      }
+
+      .brand-logo {
+        height: 52px;
+        max-width: 62vw;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links li {
+        width: 100%;
+      }
+
+      .nav-links a,
+      .nav-links button {
+        width: 100%;
+        display: block;
+        text-align: left;
+        padding: 0.6rem 0.2rem;
+      }
+
+      .hero {
+        min-height: 74vh;
+      }
+
+      .stats-grid,
+      .ribbon-links,
+      .cards-3,
+      .media-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 3.2rem 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="container nav-wrap">
+      <a class="brand" href="#home" aria-label="Victory Church Gachibowli home">
+        <img class="brand-logo" src="assets/Victory_Church_Logo.png" alt="Victory Church Gachibowli logo">
+        <span class="visually-hidden">Victory Church Gachibowli, Hyderabad</span>
+      </a>
+
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mainNav" id="menuToggle">Menu</button>
+
+      <ul class="nav-links" id="mainNav">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><button type="button" data-modal-open="eventsModal">Events</button></li>
+        <li><a href="#media">Media</a></li>
+        <li><a href="#visit">Visit</a></li>
+        <li><a class="btn-live" href="#online">Watch Online</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <section class="hero" id="home">
+    <video class="hero-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+      <source src="assets/church_bg_hd.mp4" type="video/mp4">
+      <source src="assets/church_bg.mp4" type="video/mp4">
+      <source src="assets/church_bg_fallback.mp4" type="video/mp4">
+    </video>
+    <div class="container hero-content reveal">
+      <span class="eyebrow">Worship with us this Sunday</span>
+      <h1>Changing lives. Making disciples. Reaching the world.</h1>
+      <p>Victory Church Gachibowli passionately follows the Word of God to preach the Gospel. Join us in person for worship, teaching, and fellowship.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#visit">Plan Your Visit</a>
+        <a class="btn btn-soft" href="#services">Service Timings</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats-band">
+    <div class="container stats-grid reveal">
+      <article class="stat">
+        <strong>Sunday Worship</strong>
+        <span>10:30 AM to 12:30 PM (Telugu and English)</span>
+      </article>
+      <article class="stat">
+        <strong>Evening Service</strong>
+        <span>6:30 PM to 8:00 PM (Hindi and English)</span>
+      </article>
+      <article class="stat">
+        <strong>Mid-Week Prayer</strong>
+        <span>Wednesday at 7:30 PM</span>
+      </article>
+      <article class="stat">
+        <strong>Weekday Prayer</strong>
+        <span>Monday to Saturday, 8:00 AM to 11:00 AM</span>
+      </article>
+    </div>
+  </section>
+
+  <section class="action-ribbon">
+    <div class="container ribbon-links reveal">
+      <a href="https://www.google.com/maps/dir//Victory+Church+Gachibowli+Hyderabad" target="_blank" rel="noopener noreferrer">Get Directions</a>
+      <button type="button" data-modal-open="visitorModal">New Visitor Form</button>
+      <button type="button" data-modal-open="eventsModal">This Month Events</button>
+      <button type="button" data-modal-open="prayerModal">Submit Prayer Request</button>
+    </div>
+  </section>
+
+  <section class="section" id="services">
+    <div class="container">
+      <h2 class="section-title reveal">Service Times</h2>
+      <p class="section-copy reveal">Gather with us through worship, teaching, prayer, and fellowship across the week.</p>
+
+      <div class="cards-3">
+        <article class="card reveal">
+          <h3>Sunday Services</h3>
+          <div class="agenda-item">
+            <strong>Telugu and English Service</strong>
+            <span>10:30 AM to 12:30 PM</span>
+          </div>
+          <div class="agenda-item">
+            <strong>Hindi and English Service</strong>
+            <span>6:30 PM to 8:00 PM</span>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <h3>Mid-Week</h3>
+          <div class="agenda-item">
+            <strong>Personal Prayer</strong>
+            <span>6:30 PM</span>
+          </div>
+          <div class="agenda-item">
+            <strong>Wednesday Prayer</strong>
+            <span>7:30 PM</span>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <h3>Weekday Prayer and School</h3>
+          <div class="agenda-item">
+            <strong>Weekday Prayer Meetings</strong>
+            <span>Monday to Saturday: 8:00 AM to 11:00 AM</span>
+          </div>
+          <div class="agenda-item">
+            <strong>Sunday School</strong>
+            <span>Every Sunday at 11:00 AM (below 15 years)</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="media" style="padding-top: 0;">
+    <div class="container">
+      <h2 class="section-title reveal">Media and Resources</h2>
+      <p class="section-copy reveal">Catch up on sermons, browse community moments, and stay informed about church life.</p>
+
+      <div class="media-grid">
+        <button class="media-link reveal" type="button" data-modal-open="galleryModal" style="text-align:left;">
+          <h4>Photo Gallery</h4>
+          <p>Open church photo highlights and community moments.</p>
+        </button>
+        <button class="media-link reveal" type="button" data-modal-open="eventsModal" style="text-align:left;">
+          <h4>Upcoming Events</h4>
+          <p>View the latest event schedule and special gatherings.</p>
+        </button>
+        <a class="media-link reveal" href="https://www.youtube.com/@victorychurchgachibowli2888/videos" target="_blank" rel="noopener noreferrer">
+          <h4>Sermon Library</h4>
+          <p>Watch previous messages and Bible teaching archives.</p>
+        </a>
+        <button class="media-link reveal" type="button" data-modal-open="prayerModal" style="text-align:left;">
+          <h4>Prayer Support</h4>
+          <p>Share your request and let the church pray with you.</p>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section online-hub" id="online">
+    <div class="container">
+      <div class="online-card reveal">
+        <h3>Watch Online</h3>
+        <p>If you are unable to attend in person, you can join worship online from one place.</p>
+        <div class="online-actions">
+          <a class="btn btn-primary" href="https://youtube.com/@victorychurchgachibowli2888/live" target="_blank" rel="noopener noreferrer">Join Live Service</a>
+          <a class="btn btn-soft" href="https://youtube.com/@victorychurchgachibowli2888?sub_confirmation=1" target="_blank" rel="noopener noreferrer">Subscribe for Updates</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="visit" style="padding-top: 0;">
+    <div class="container two-col">
+      <article class="card reveal">
+        <h2 class="section-title" style="font-size:2rem;">Plan Your Visit</h2>
+        <p class="section-copy" style="margin-bottom:0.9rem;">Victory Church Gachibowli welcomes families, students, and professionals from all around Hyderabad.</p>
+        <p><strong>Address</strong><br>Ideal Square Building,<br>3rd Floor Above Westside Shoppingmall, Gachibowli,<br>Hyderabad, Telangana 500032</p>
+        <iframe class="map-frame" src="https://maps.google.com/maps?q=Victory%20Church%20Gachibowli%20Hyderabad&t=&z=15&ie=UTF8&iwloc=&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <a class="btn btn-primary" href="https://www.google.com/maps/dir//Victory+Church+Gachibowli+Hyderabad" target="_blank" rel="noopener noreferrer" style="width:100%;">Open Directions</a>
+      </article>
+
+      <article class="card reveal">
+        <h3>Church Reviews</h3>
+        <div class="reviews">
+          <div class="review">
+            <p>"Nice church to worship, heart touching spiritual sermons, ambience is good and well maintained."</p>
+            <span>5/5 - Yash (Gachibowli)</span>
+          </div>
+          <div class="review">
+            <p>"Excellent worship and peaceful atmosphere. Truly feel blessed every Sunday."</p>
+            <span>5/5 - Sandeep (Hyderabad)</span>
+          </div>
+          <div class="review">
+            <p>"Warm fellowship, strong Bible teaching, and meaningful prayer support."</p>
+            <span>5/5 - Community Member</span>
+          </div>
+        </div>
+        <a class="btn btn-primary" href="https://www.google.com/maps/place/Victory+Church/@17.4421039,78.3590724,17z/data=!4m8!3m7!1s0x3bcb9395ba2b6ecb:0x5124b828b886f9a5!8m2!3d17.4421039!4d78.3590724!9m1!1b1!16s%2Fg%2F1264728bp" target="_blank" rel="noopener noreferrer" style="margin-top:1rem; width:100%;">View and Write Reviews</a>
+      </article>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <h3>Victory Church Gachibowli</h3>
+        <p>Worship in-person and online. We are committed to Gospel-centered preaching, discipleship, and prayer.</p>
+        <div class="socials">
+          <a href="https://wa.me/918688607138" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+          <a href="https://www.instagram.com/victorychurch.gachibowli" target="_blank" rel="noopener noreferrer">Instagram</a>
+        </div>
+      </div>
+      <div>
+        <p>Copyright 2026 Victory Church Gachibowli. All rights reserved.</p>
+        <p>500032 Hyderabad, Telangana, India</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="modal-overlay" id="galleryModal" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="galleryModalTitle">
+      <div class="modal-head">
+        <h2 id="galleryModalTitle">Gallery and Highlights</h2>
+        <button class="close-modal" type="button" aria-label="Close" data-modal-close>&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="margin-bottom:0.8rem; color:#314239;">See our recent photos and moments from services and events.</p>
+        <a class="btn btn-primary" href="https://photos.app.goo.gl/HQmFE4bmpf1C8esM7" target="_blank" rel="noopener noreferrer">Open Google Photos Album</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="visitorModal" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="visitorModalTitle">
+      <div class="modal-head">
+        <h2 id="visitorModalTitle">Visitors Entry Form</h2>
+        <button class="close-modal" type="button" aria-label="Close" data-modal-close>&times;</button>
+      </div>
+      <div class="modal-body" style="padding:0.8rem;">
+        <iframe class="form-iframe" src="https://docs.google.com/forms/d/e/1FAIpQLSfKlbj2rHYalykSc7vmNw4cYqLTwEB_lUBjppvGEp6_FAnKLA/viewform?embedded=true">Loading form...</iframe>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="eventsModal" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="eventsModalTitle">
+      <div class="modal-head">
+        <h2 id="eventsModalTitle">August 2026 Events</h2>
+        <button class="close-modal" type="button" aria-label="Close" data-modal-close>&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="event-list">
+          <article class="event-item">
+            <div class="event-date"><strong>1</strong><span>AUG</span></div>
+            <div>
+              <h4>Serious Men's Class</h4>
+              <p>Morning: Men Breakfast at Ella. Monthly men's gathering and teaching.</p>
+            </div>
+          </article>
+
+          <article class="event-item">
+            <div class="event-date"><strong>8</strong><span>AUG</span></div>
+            <div>
+              <h4>Women Meet and Manikonda Grand Opening</h4>
+              <p>Morning: Women Breakfast at Ella. Evening: Manikonda Church grand opening.</p>
+            </div>
+          </article>
+
+          <article class="event-item">
+            <div class="event-date"><strong>10-11</strong><span>AUG</span></div>
+            <div>
+              <h4>Revivals in Chandanagar</h4>
+              <p>Special revival meetings in Chandanagar.</p>
+            </div>
+          </article>
+
+          <article class="event-item">
+            <div class="event-date"><strong>13</strong><span>AUG</span></div>
+            <div>
+              <h4>Men's Discipleship with John Perry</h4>
+              <p>Special discipleship session with John Perry.</p>
+            </div>
+          </article>
+
+          <article class="event-item">
+            <div class="event-date"><strong>14</strong><span>AUG</span></div>
+            <div>
+              <h4>Home Bible Study</h4>
+              <p>Area-wide fellowship and study gathering.</p>
+            </div>
+          </article>
+
+          <article class="event-item">
+            <div class="event-date"><strong>15</strong><span>AUG</span></div>
+            <div>
+              <h4>Serious Men's Class and Game Night</h4>
+              <p>Morning class and evening game night fellowship.</p>
+            </div>
+          </article>
+
+          <article class="event-item">
+            <div class="event-date"><strong>23-26</strong><span>AUG</span></div>
+            <div>
+              <h4>Revivals with Pastor Nehemiah</h4>
+              <p>Location: Gachibowli.</p>
+            </div>
+          </article>
+
+          <article class="event-item">
+            <div class="event-date"><strong>28-30</strong><span>AUG</span></div>
+            <div>
+              <h4>Revivals in Madhapur with Pastor Jeevan</h4>
+              <p>Dates: August 28, 29, and 30.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="prayerModal" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="prayerModalTitle">
+      <div class="modal-head">
+        <h2 id="prayerModalTitle">Healing and Prayer Request</h2>
+        <button class="close-modal" type="button" aria-label="Close" data-modal-close>&times;</button>
+      </div>
+      <div class="modal-body" style="padding:0.8rem;">
+        <iframe class="form-iframe" src="https://docs.google.com/forms/d/e/1FAIpQLScyrvUZsSoTVkH5fIhBoNW6b3JzgR1qYeXqcm6dG4_ticLh_g/viewform?embedded=true">Loading form...</iframe>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const menuToggle = document.getElementById("menuToggle");
+    const mainNav = document.getElementById("mainNav");
+    const navLinks = mainNav.querySelectorAll("a, button");
+
+    menuToggle.addEventListener("click", () => {
+      const expanded = menuToggle.getAttribute("aria-expanded") === "true";
+      menuToggle.setAttribute("aria-expanded", String(!expanded));
+      mainNav.classList.toggle("open");
+    });
+
+    navLinks.forEach((item) => {
+      item.addEventListener("click", () => {
+        if (window.innerWidth <= 760) {
+          mainNav.classList.remove("open");
+          menuToggle.setAttribute("aria-expanded", "false");
+        }
+      });
+    });
+
+    const modalOpenButtons = document.querySelectorAll("[data-modal-open]");
+    const modalCloseButtons = document.querySelectorAll("[data-modal-close]");
+
+    function setModalState(modalId, open) {
+      const modal = document.getElementById(modalId);
+      if (!modal) return;
+      modal.classList.toggle("open", open);
+      modal.setAttribute("aria-hidden", String(!open));
+      document.body.style.overflow = open ? "hidden" : "";
+    }
+
+    modalOpenButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const modalId = button.getAttribute("data-modal-open");
+        setModalState(modalId, true);
+      });
+    });
+
+    modalCloseButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const parentModal = button.closest(".modal-overlay");
+        if (!parentModal) return;
+        setModalState(parentModal.id, false);
+      });
+    });
+
+    document.querySelectorAll(".modal-overlay").forEach((overlay) => {
+      overlay.addEventListener("click", (event) => {
+        if (event.target === overlay) {
+          setModalState(overlay.id, false);
+        }
+      });
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key !== "Escape") return;
+      document.querySelectorAll(".modal-overlay.open").forEach((overlay) => {
+        setModalState(overlay.id, false);
+      });
+    });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    document.querySelectorAll(".reveal").forEach((item) => observer.observe(item));
   </script>
-
 </body>
 </html>
